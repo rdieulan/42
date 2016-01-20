@@ -6,13 +6,13 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:21:22 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/01/20 16:57:36 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/01/20 20:03:48 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 2000
+# define BUFF_SIZE 30
 
 #include <unistd.h>
 #include <fcntl.h>

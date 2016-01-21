@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 17:29:18 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/01/21 19:17:51 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/01/21 19:26:42 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		get_next_line(int const fd, char **line)
 			return (1);
 		}
 	}
-	if (i == -1)
+	if (ret == -1)
 		return (-1);
 	return (0);
 }

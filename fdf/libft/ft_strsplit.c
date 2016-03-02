@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 20:38:24 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/09 17:08:24 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:21:04 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 unsigned int		ft_nword(char const *s, char c)
 {

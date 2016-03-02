@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 19:26:52 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/04 14:58:49 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:21:14 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 char	*ft_strstr(const char *s1, const char *s2)
 {

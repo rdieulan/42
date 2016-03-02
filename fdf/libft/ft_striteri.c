@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 16:06:06 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/04 16:16:44 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:18:16 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {

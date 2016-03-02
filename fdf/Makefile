@@ -3,36 +3,39 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jnaddef <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/16 14:02:58 by rdieulan          #+#    #+#              #
-#    Updated: 2016/01/29 16:27:41 by rdieulan         ###   ########.fr        #
+#    Created: 2016/02/12 16:41:18 by jnaddef           #+#    #+#              #
+#    Updated: 2016/03/02 18:43:37 by rdieulan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bsq
-PATH_SRC = ./srcs/
-HEADER = ./includes/
-FLAG = -Werror -Wall -Wextra
-OPTION = -c -I $(HEADER)
+NAME = fdf
+SRC_PATH = ./srcs/
+SRCS = $(SRC_PATH)main.c\
 
-SRC = $(PATH_SRC)main.c
+OBJS = $(SRCS:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra
+LIBS = ./libft/
+LIB_DIR = libft/
 
-OBJ = main.o
+.PHONY: $(LIBS) all clean fclean re
 
-all : $(NAME)
+all: $(LIBS) $(NAME)
 
-$(NAME):
-	make -C libft
-	gcc $(FLAG) $(OPTION) $(SRC)
-	gcc $(FLAG) -I $(HEADER) $(OBJ) -o $(NAME)
+$(LIBS):
+	$(MAKE) -C $@
+
+$(NAME):  
+	$(CC) $(CFLAGS) $(SRCS) -L./$(LIB_DIR) -lft -I$(LIB_DIR) -o $(NAME)
 
 clean:
-	make clean -C libft
-	/bin/rm -f $(OBJ)
+	rm -f $(OBJS)
+	make -C libft/ clean
 
 fclean: clean
-	make fclean -C libft
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
+	make -C libft/ fclean
 
 re: fclean all

@@ -6,12 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/07 07:57:48 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/02/15 18:15:59 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/24 18:01:06 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft/includes/libft.h"
 #include <stdarg.h>
 #include <stdio.h>
 
@@ -25,7 +24,7 @@ int	param_validity(va_list ap)
 	return 0;
 }*/
 
-int	ft_printf(const char * format, ...)
+int	ft_printf(const char *format, ...)
 {
 //	char arg;
 //	va_list ap;
@@ -38,6 +37,11 @@ int	ft_printf(const char * format, ...)
 		if (param_validity(arg, ) == -1)
 			exit;
 	}*/
-	ft_putstr(format);
-	return 0;
+	return (ft_atoi(format));
+}
+
+int	main(void)
+{
+	ft_printf("coucou");
+	return (0);
 }

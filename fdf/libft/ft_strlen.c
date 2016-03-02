@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 15:51:27 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/08 14:53:30 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:18:54 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 size_t	ft_strlen(const char *s)
 {

@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/09 16:16:20 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/10 16:51:24 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:10:20 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 int		ft_isprime(int nb)
 {

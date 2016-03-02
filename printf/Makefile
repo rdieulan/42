@@ -6,25 +6,23 @@
 #    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/07 07:57:11 by rdieulan          #+#    #+#              #
-#    Updated: 2016/02/07 07:57:22 by rdieulan         ###   ########.fr        #
+#    Updated: 2016/03/02 14:02:49 by rdieulan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = printf
+NAME = libftprinf.a
 
 SRC = ft_printf.c\
-		main.c
 
 FLAG = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME):
-	make -C libft/ fclean && make -C libft/
-	gcc -o $(NAME) $(FLAG) $(SRC)
+	make -C libft
+	clang -o $(NAME) $(FLAG) $(SRC)
 
 clean:
-	rm -rf *.o
 	make -C libft/ clean
 
 fclean: clean

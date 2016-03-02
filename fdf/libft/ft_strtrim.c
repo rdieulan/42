@@ -6,11 +6,11 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 19:09:00 by rdieulan          #+#    #+#             */
-/*   Updated: 2015/12/09 17:33:17 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/02/15 16:21:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 static int	ft_end(char const *s)
 {

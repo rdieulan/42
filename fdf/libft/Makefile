@@ -6,7 +6,7 @@
 #    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 14:30:37 by rdieulan          #+#    #+#              #
-#    Updated: 2015/12/15 19:35:36 by rdieulan         ###   ########.fr        #
+#    Updated: 2016/03/02 16:11:44 by rdieulan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,9 @@ SRC =	ft_putchar.c\
 		ft_carraydup.c\
 		ft_itab_sort.c\
 		ft_newc2d.c\
-		ft_isprime.c
+		ft_isprime.c\
+		ft_concat.c\
+		get_next_line.c
 
 OBJS = $(SRC:.c=.o)
 

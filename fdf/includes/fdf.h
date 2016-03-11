@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:22:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/02 18:36:49 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/03/11 20:49:33 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include "../libft/includes/libft.h"
 
 typedef struct	s_mlx

@@ -1,41 +1,35 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jnaddef <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/02/12 16:41:18 by jnaddef           #+#    #+#              #
-#    Updated: 2016/03/02 18:43:37 by rdieulan         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = ./fdf
+SRC = main.c
+OBJ = $(SRC:.c=.o)
+	CFLAGS = -Wextra -Werror -Wall -L/usr/local/lib/ -I/usr/local/include -lmlx\
+	-framework OpenGL -framework AppKit
+RM = /bin/rm -f
+LIBFT = ./libft/libft.a
+I = -I ./libft/
+L = -L ./libft/ -lft
 
-NAME = fdf
-SRC_PATH = ./srcs/
-SRCS = $(SRC_PATH)main.c\
+all: $(LIBFT) $(NAME)
 
-OBJS = $(SRCS:.c=.o)
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra
-LIBS = ./libft/
-LIB_DIR = libft/
+$(NAME): $(OBJ)
+	@echo "make: executable's compilation"
+	@gcc $(CFLAGS) -o $(NAME) $(OBJ) $(L)
 
-.PHONY: $(LIBS) all clean fclean re
+$(OBJ):
+	@echo "make: object's compilation"
+	@gcc -c $(SRC) $(I)
 
-all: $(LIBS) $(NAME)
-
-$(LIBS):
-	$(MAKE) -C $@
-
-$(NAME):  
-	$(CC) $(CFLAGS) $(SRCS) -L./$(LIB_DIR) -lft -I$(LIB_DIR) -o $(NAME)
+$(LIBFT):
+	@make -C ./libft/
+	@make clean -C ./libft/
 
 clean:
-	rm -f $(OBJS)
-	make -C libft/ clean
+	@echo "make: object's deletion"
+	@$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
-	make -C libft/ fclean
+	@echo "make: executable's deletion"
+	@$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

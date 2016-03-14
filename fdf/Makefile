@@ -1,5 +1,7 @@
 NAME = ./fdf
-SRC = main.c
+SRC = main.c\
+	  get_matrix.c\
+	  graphic_env.c
 OBJ = $(SRC:.c=.o)
 	CFLAGS = -Wextra -Werror -Wall -L/usr/local/lib/ -I/usr/local/include -lmlx\
 	-framework OpenGL -framework AppKit

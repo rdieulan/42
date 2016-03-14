@@ -1,37 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/02 16:22:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/14 18:38:25 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/03/14 18:53:47 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/03/14 19:29:39 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "../includes/fdf.h"
 
-# include <mlx.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include "../libft/includes/libft.h"
 
-typedef struct	s_mlx
-{
-	void		*ptr;
-	void		*win;
-	char		*title;
-}				t_mlx;
-
-typedef struct	s_env
-{
-	int			x;
-	int			y;
-}				t_env;
-
-int		**get_matrix(char *file, t_env *env);
-void	graphic_process(t_env *env);
-#endif

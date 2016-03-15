@@ -6,25 +6,18 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 18:00:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/14 19:20:04 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:21:19 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		key_hooker(int keycode, t_mlx *mlx)
+void	graphic_init(t_mlx *mlx, t_env *env)
 {
-	if (keycode == 53) // 53 = escape
-		exit(0);
-	else
-		printf("keycode not assigned : %d\n", keycode);
-	return (0);
-}
-
-void	graphic_init(t_mlx *mlx, int x, int y, char *title)
-{
+	mlx->w = (env->y + 1) * D_SCALE;
+	mlx->h = (env->x + 1) * D_SCALE;
 	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, x, y, title);
+	mlx->win = mlx_new_window(mlx->ptr, mlx->w, mlx->h, env->title);
 }
 
 void	graphic_process(t_env *env)
@@ -32,8 +25,8 @@ void	graphic_process(t_env *env)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx*)malloc(sizeof(t_mlx));
-	graphic_init(mlx, 500, 500, "FENETRE");
-	mlx_pixel_put(mlx->ptr, mlx->win, 250, 250, 0x00FFFFFF);
+	graphic_init(mlx, env);
+	draw(env, mlx);
 	mlx_key_hook(mlx->win, key_hooker, mlx);
 	mlx_loop(mlx->ptr);
 }

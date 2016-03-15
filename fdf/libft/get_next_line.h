@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 14:20:43 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/02 17:55:21 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/03/15 15:48:40 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include "includes/libft.h"
 
-# define BUFF_SIZE 10000
+# define BUFF_SIZE	20
 
 typedef struct	s_file
 {

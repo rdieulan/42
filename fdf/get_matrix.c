@@ -6,13 +6,13 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 17:11:52 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/14 17:57:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/03/15 16:42:30 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		*str_int_to_tab(char *str)
+int		*str_int_to_tab(char *str, t_env *env)
 {
 	int		*matrix_line;
 	char	**tmp;
@@ -22,14 +22,12 @@ int		*str_int_to_tab(char *str)
 	tmp = ft_strsplit(str, ' ');
 	while (tmp[i] != NULL)
 		i++;
-	matrix_line = (int *)malloc(sizeof(int) * i);
-	i = 0;
-	while (tmp[i] != NULL)
+	env->y = i;
+	matrix_line = (int *)malloc(sizeof(int) * i--);
+	while (i >= 0)
 	{
-		printf("BOUCLE CONVERSION STR -> INT : ");
 		matrix_line[i] = ft_atoi(tmp[i]);
-		printf("matrix[%d] = %d\n", i, matrix_line[i]);
-		i++;
+		i--;
 	}
 	return (matrix_line);
 }
@@ -44,7 +42,7 @@ int		line_counter(char *file, t_env *env)
 	fd = open(file, O_RDONLY);
 	while (get_next_line(fd, &line) > 0)
 		i++;
-	env->y = i;
+	env->x = i;
 	return (i);
 }
 
@@ -59,11 +57,6 @@ int		**get_matrix(char *file, t_env *env)
 	fd = open(file, O_RDONLY);
 	matrix = (int **)malloc(sizeof(int *) * line_counter(file, env));
 	while (get_next_line(fd, &line) > 0)
-	{
-		printf("BOUCLE GET_MATRIX\n");
-		matrix[i] = str_int_to_tab(line);
-		i++;
-	}
-	env->x = i;
+		matrix[i++] = str_int_to_tab(line, env);
 	return (matrix);
 }

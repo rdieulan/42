@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:22:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/15 16:52:14 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/03/16 16:34:17 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # define D_SCALE 20
 # define D_WIDTH (i * D_SCALE) + D_SCALE - env->matrix[i][j]
 # define D_HEIGHT (j * D_SCALE) + D_SCALE - env->matrix[i][j]
+# define PXL env->pixel_matrix[i][j]
+# define PXL_H env->pixel_matrix[i][j+1]
+# define PXL_V env->pixel_matrix[i+1][j]
+
 
 typedef struct	s_mlx
 {

@@ -3,7 +3,8 @@ SRC = main.c\
 	  get_matrix.c\
 	  graphic_env.c\
 	  draw.c\
-	  event.c
+	  event.c\
+	  draw_complexe.c
 OBJ = $(SRC:.c=.o)
 	CFLAGS = -Wextra -Werror -Wall -L/usr/local/lib/ -I/usr/local/include -lmlx\
 	-framework OpenGL -framework AppKit

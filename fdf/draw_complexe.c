@@ -6,105 +6,115 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 16:03:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/22 18:49:59 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/21 22:42:29 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-void	draw_diag1(t_mlx *mlx, t_env *env, float coef)
+void		ft_draw_line1(t_mlx *mlx, t_env *env, float coeff_dir)
 {
-	printf(" diag 1 || X0,X1[%f|%f] -> Y0,Y1[%f|%f]\n", X0, X1, Y0, Y1);
-	float tmpx;
-	float tmpy;
-	float tmpcoef;
+	float	i;
+	float	j;
+	float	tmp;
 
-	tmpx = 1;
-	tmpy = 1;
-	while ((X0 + tmpx) <= Y0)
+	i = 1;
+	j = 1;
+	while (X0 + j < X1 || Y0 + i < Y1)
 	{
-		tmpcoef = tmpx / tmpy;
-		if (tmpcoef > coef)
-		{
-			//printf("DRAW PIXEL [%f].[%f] BLANC\n", X0 + tmpx, X1 + tmpy);
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 + tmpy++, X0 + tmpx, 0x00FFFFFF);
-		}
+		tmp = j / i;
+		if (tmp >= coeff_dir)
+			mlx_pixel_put(mlx->ptr, mlx->win, X0 + j, Y0 + i++, 0x00FFFFFF);
 		else
-		{
-			//printf("DRAW PIXEL [%f].[%f] BLANC\n", X0 + tmpx, X1 + tmpy);
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 + tmpy, X0 + tmpx++, 0x00FFFFFF);
-		}
+			mlx_pixel_put(mlx->ptr, mlx->win, X0 + j++, Y0 + i, 0x00FFFFFF);
 	}
 }
 
-void	draw_diag2(t_mlx *mlx, t_env *env, float coef)
+void		ft_draw_line2(t_mlx *mlx, t_env *env, float coeff_dir)
 {
-	printf(" diag 2 || X0,X1[%f|%f] -> Y0,Y1[%f|%f]\n", X0, X1, Y0, Y1);
-	float tmpx;
-	float tmpy;
-	float tmpcoef;
+	float	i;
+	float	j;
+	float	tmp;
 
-	tmpx = 1;
-	tmpy = -1;
-	while ((X0 + tmpx) <= Y0)
+	j = -1;
+	i = 1;
+	while (X1 + j > X0 || Y1 + i < Y0)
 	{
-		tmpcoef = tmpx / tmpy;
-		if (tmpcoef > coef)
-		{
-			printf("DRAW PIXEL [%f].[%f] BLANC\n", X0 + tmpx, X1 + tmpy);
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 + tmpy, X0 + tmpx++, 0x00FFFFFF);
-		}
-		else if (tmpcoef < coef)
-		{
-			printf("DRAW PIXEL [%f].[%f] BLANC\n", X0 + tmpx, X1 + tmpy);
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 - tmpy++, X0 + tmpx, 0x00FFFFFF);
-		}
+		tmp = j / i;
+		if (tmp >= coeff_dir)
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + j--, Y1 + i, 0x00FFFFFF);
 		else
-		{
-			printf("DRAW PIXEL [%f].[%f] BLANC\n", X0 + tmpx, X1 + tmpy);
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 + tmpy--, X0 + tmpx++, 0x00FFFFFF);
-		}
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + j, Y1 + i++, 0x00FFFFFF);
 	}
 }
 
-void	axial_swapper(t_env *env)
+void		ft_draw_line3(t_mlx *mlx, t_env *env, float coeff_dir)
 {
-	float tmp;
+	float	i;
+	float	j;
+	float	tmp;
 
-	tmp = X0;
-	X0 = Y0;
-	Y0 = tmp;
-	tmp = X1;
-	X1 = Y1;
-	Y1 = tmp;
+	j = -1;
+	i = 1;
+	while (X0 + j > X1 || Y0 + i < Y1)
+	{
+		tmp = j / i;
+		if (tmp >= coeff_dir)
+			mlx_pixel_put(mlx->ptr, mlx->win, X0 + j--, Y0 + i, 0x00FFFFFF);
+		else
+			mlx_pixel_put(mlx->ptr, mlx->win, X0 + j, Y0 + i++, 0x00FFFFFF);
+	}
+}
+
+void		ft_draw_line4(t_mlx *mlx, t_env *env, float coeff_dir)
+{
+	float	i;
+	float	j;
+	float	tmp;
+
+	i = 1;
+	j = 1;
+	while (X1 + j < X0 || Y1 + i < Y0)
+	{
+		tmp = j / i;
+		if (tmp >= coeff_dir)
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + j, Y1 + i++, 0x00FFFFFF);
+		else
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + j++, Y1 + i, 0x00FFFFFF);
+	}
 }
 
 void	draw_diag_select(t_mlx *mlx, t_env *env)
 {
-	float coef;
-	float tmp;
+	int i;
+	float coeff_dir;
 
-	coef = (Y0 - X0) / (Y1 - X1);
-	if (coef > 0)
+	i = 0;
+	if (Y1 == X1 || Y0 == X0)
+		
+
+
+
+
+		coeff_dir = ((float)Y0 - (float)X0) / ((float)Y1 - (float)X1);
+	if (X1 > X0)
+		while (i < X1 - X0)
+			mlx_pixel_put(mlx->ptr, mlx->win, X0 + i++, Y0, 0x00FF00FF);
+	else if (X1 < X0)
+		while (i < X0 - X1)
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + i++, Y1, 0x00FF0000);
+	else if (coeff_dir < 0)
 	{
-		if (Y0 < X0)
-		{
-			axial_swapper(env);
-			draw_diag1(mlx, env, coef);
-			axial_swapper(env);
-		}
+		/*if (X1 - X0 < 0)
+			ft_draw_line3(mlx, env, coeff_dir);
 		else
-			draw_diag1(mlx, env, coef);
+			ft_draw_line2(mlx, env, coeff_dir);*/
 	}
 	else
-	{
-		if (Y0 < X0)
-		{
-			axial_swapper(env);
-			draw_diag2(mlx, env, coef);
-			axial_swapper(env);
-		}
+	{/*
+		if (X1 - X0 < 0 && Y1 - Y0 < 0)
+			ft_draw_line4(mlx, env, coeff_dir);
 		else
-			draw_diag2(mlx, env, coef);
+			ft_draw_line1(mlx, env, coeff_dir);*/
 	}
 }

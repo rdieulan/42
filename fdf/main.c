@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:19:59 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/19 21:03:56 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/21 17:18:30 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		main(int argc, char **argv)
 	t_env	*env;
 
 	env = (t_env*)malloc(sizeof(t_env));
-	env->fx = (float *)malloc(sizeof(float) * 2);
-	env->fy = (float *)malloc(sizeof(float) * 2);
+	env->fx = (int *)malloc(sizeof(int) * 2);
+	env->fy = (int *)malloc(sizeof(int) * 2);
 	env->x = 0;
 	env->y = 0;
 	env->title = argv[1];

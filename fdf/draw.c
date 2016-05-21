@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:53:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/22 18:55:24 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/21 17:05:40 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	draw_pixel_pattern(t_env *env, t_mlx *mlx)
 	int i;
 	int j;
 
-	env->pixel_matrix = (float ***)malloc(sizeof(float **) * (env->x + 1));
+	env->pixel_matrix = (int ***)malloc(sizeof(int **) * (env->x + 1));
 	i = 0;
 	while (i < env->x)
 	{
 		j = 0;
-		env->pixel_matrix[i] = (float **)malloc(sizeof(float *) * (env->y + 1));
+		env->pixel_matrix[i] = (int **)malloc(sizeof(int *) * (env->y + 1));
 		while (j < env->y)
 		{
-			PXL = (float *)malloc(sizeof(float) * 2);
-			PXL[0] = (float)D_WIDTH;
-			PXL[1] = (float)D_HEIGHT;
+			PXL = (int *)malloc(sizeof(int) * 2);
+			PXL[0] = D_WIDTH;
+			PXL[1] = D_HEIGHT;
 			j++;
 		}
 		i++;

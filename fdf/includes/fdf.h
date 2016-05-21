@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:22:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/22 19:11:01 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/21 17:04:52 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ typedef struct	s_env
 	int			y;
 	char		*title;
 	int			**matrix;
-	float		***pixel_matrix;
-	float		*fx;
-	float		*fy;
+	int			***pixel_matrix;
+	int			*fx;
+	int			*fy;
 }				t_env;
 
 int		**get_matrix(char *file, t_env *env);

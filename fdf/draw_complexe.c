@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 16:03:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/05/21 22:42:29 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/27 20:59:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,31 +90,55 @@ void	draw_diag_select(t_mlx *mlx, t_env *env)
 	float coeff_dir;
 
 	i = 0;
-	if (Y1 == X1 || Y0 == X0)
-		
-
-
-
-
-		coeff_dir = ((float)Y0 - (float)X0) / ((float)Y1 - (float)X1);
-	if (X1 > X0)
-		while (i < X1 - X0)
-			mlx_pixel_put(mlx->ptr, mlx->win, X0 + i++, Y0, 0x00FF00FF);
-	else if (X1 < X0)
-		while (i < X0 - X1)
-			mlx_pixel_put(mlx->ptr, mlx->win, X1 + i++, Y1, 0x00FF0000);
-	else if (coeff_dir < 0)
+	coeff_dir = 0;
+	//printf("diag select. X0 = %d, X1 = %d, Y0 = %d, Y1 = %d\n", X0, X1, Y0, Y1);
+	if (Y1 == X1)
 	{
-		/*if (X1 - X0 < 0)
-			ft_draw_line3(mlx, env, coeff_dir);
-		else
-			ft_draw_line2(mlx, env, coeff_dir);*/
+		printf("Drawing Vertical\n");
+		while (i < Y0 - X0)
+		{
+			printf("Drawing %d:%d\n", Y0, Y1 + i);
+			mlx_pixel_put(mlx->ptr, mlx->win, Y1 + i++, Y0, 0x00FF00FF);
+		}
+	}
+	else if (Y0 == X0)
+	{
+		printf("Drawing horizontal\n");
+		while (i < Y1 - X1)
+		{
+			printf("Drawing %d:%d\n", X0, X1 + i);
+			mlx_pixel_put(mlx->ptr, mlx->win, X1 + i++, X0, 0x00FF0000);// RED
+		}
 	}
 	else
-	{/*
-		if (X1 - X0 < 0 && Y1 - Y0 < 0)
-			ft_draw_line4(mlx, env, coeff_dir);
+	{
+		coeff_dir = ((float)Y0 - (float)X0) / ((float)Y1 - (float)X1);
+		printf("coeff calculated = %f\n", coeff_dir);
+		/*if (coeff_dir > 0)
+		{
+			if (Y1 - X1 > 0)
+			{
+				printf("drawing diag 1\n");
+				ft_draw_line1(mlx, env, coeff_dir);
+			}
+			else
+			{
+				printf("drawing diag 2\n");
+				ft_draw_line2(mlx, env, coeff_dir);
+			}
+		}
 		else
-			ft_draw_line1(mlx, env, coeff_dir);*/
+		{
+			if (Y1 - X1 > 0)
+			{
+				printf("drawing diag 3\n");
+				ft_draw_line3(mlx, env, coeff_dir);
+			}
+			else
+			{
+				printf("drawing diag 4\n");
+				ft_draw_line4(mlx, env, coeff_dir);
+			}
+		}*/
 	}
 }

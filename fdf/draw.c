@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:53:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/05/21 22:13:31 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/27 19:35:35 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	draw(t_env *env, t_mlx *mlx)
 		{
 			X0 = PXL[0];
 			X1 = PXL[1];
-			printf("TRACE %d:%d\n", X0, X1);
+			printf("|||||||||| NEW TRACE %d:%d |||||||||||\n", X0, X1);
 			if (j < env->y - 1) // horizontal
 			{
 				Y0 = PXL_H[0];

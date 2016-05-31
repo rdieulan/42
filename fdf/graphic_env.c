@@ -6,27 +6,25 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 18:00:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/05/27 20:33:10 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/05/31 18:12:51 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	graphic_init(t_mlx *mlx, t_env *env)
+void	graphic_init(t_env *env)
 {
-	mlx->w = 2000;//(env->y + 1) * D_SCALE;
-	mlx->h = 2000;//(env->x + 1) * D_SCALE;
-	mlx->ptr = mlx_init();
-	mlx->win = mlx_new_window(mlx->ptr, mlx->w, mlx->h, env->title);
+	MLX->w = 1380;//(env->y + 1) * D_SCALE;
+	MLX->h = 1380;//(env->x + 1) * D_SCALE;
+	MLX->ptr = mlx_init();
+	MLX->win = mlx_new_window(MLX->ptr, MLX->w, MLX->h, env->title);
 }
 
 void	graphic_process(t_env *env)
 {
-	t_mlx	*mlx;
-
-	mlx = (t_mlx*)malloc(sizeof(t_mlx));
-	graphic_init(mlx, env);
-	draw(env, mlx);
-	mlx_key_hook(mlx->win, key_hooker, mlx);
-	mlx_loop(mlx->ptr);
+	MLX = (t_mlx*)malloc(sizeof(t_mlx));
+	graphic_init(env);
+	mlx_hook(MLX->win, 2, 1L << 0, key_hooker, env);
+	draw(env);
+	mlx_loop(MLX->ptr);
 }

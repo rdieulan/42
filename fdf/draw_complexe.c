@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 16:03:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/05/31 18:09:34 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/02 19:23:41 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,18 @@ void		ft_draw_line1(t_env *env, float coeff_dir)
 {
 	float		i;
 	float		j;
-	float	tmp;
+	float		tmp;
 
 	i = 1;
 	j = 1;
+	env->nbstep = hypot(Y0 - X0, Y1 - X1);
 	while (X0 + j < Y0 || X1 + i < Y1)
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
-		{
-			//printf("if : Light %f:%f | tmp = %f (%f / %f)\n", X0 + j, X1 + i, tmp, j ,i);
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0 + j, 0x00FFFFFF);
-		}
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0 + j, COLOR);
 		else
-		{
-			//printf("else : Light %f:%f | tmp = %f (%f / %f)\n", X0 + j, X1 + i, tmp, j ,i);
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i, X0 + j++, 0x00FFFFFF);
-		}
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i, X0 + j++, COLOR);
 	}
 }
 
@@ -44,20 +39,14 @@ void		ft_draw_line2(t_env *env, float coeff_dir)
 
 	j = -1;
 	i = 1;
+	env->nbstep = hypot(Y0 - X0, Y1 - X1);
 	while (X0 + j > Y0 || X1 + i < Y1)
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
-		{
-			
-			//printf("if : Light %f:%f | tmp = %f (%f / %f)\n", X0 + j, X1 + i, tmp, j ,i);
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i, X0 + j--, 0x00FFFFFF);
-		}
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i, X0 + j--, COLOR);
 		else
-		{
-			//printf("else :Light %f:%f | tmp = %f (%f / %f)\n", X0 + j, X1 + i, tmp, j, i);
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0 + j, 0x00FFFFFF);
-		}
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0 + j, COLOR);
 	}
 }
 
@@ -73,9 +62,9 @@ void		ft_draw_line3(t_env *env, float coeff_dir)
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
-			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j--, Y0 + i, 0x00FFFFFF);
+			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j--, Y0 + i, COLOR);
 		else
-			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j, Y0 + i++, 0x00FFFFFF);
+			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j, Y0 + i++, COLOR);
 	}
 }
 
@@ -91,9 +80,9 @@ void		ft_draw_line4(t_env *env, float coeff_dir)
 	{
 		tmp = j / i;
 		if (tmp >= coeff_dir)
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j, Y1 + i++, 0x00FFFFFF);
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j, Y1 + i++, COLOR);
 		else
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j++, Y1 + i, 0x00FFFFFF);
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j++, Y1 + i, COLOR);
 	}
 }
 
@@ -103,55 +92,26 @@ void	draw_diag_select(t_env *env)
 	float coeff_dir;
 
 	i = 0;
+	env->actual_step = 0;
 	coeff_dir = 0;
-	//printf("diag select. X0 = %d, X1 = %d, Y0 = %d, Y1 = %d\n", X0, X1, Y0, Y1);
 	if (Y1 == X1)
-	{
-		//printf("Drawing Vertical\n");
-		while (i < Y0 - X0)
-		{
-			//printf("Drawing %d:%d\n", Y0, Y1 + i);
-			mlx_pixel_put(MLX->ptr, MLX->win, Y1 + i++, Y0, 0x00FF00FF);
-		}
-	}
+		while (i < (env->nbstep = Y0 - X0))
+			mlx_pixel_put(MLX->ptr, MLX->win, Y1 + i++, Y0, COLOR);
 	else if (Y0 == X0)
-	{
-		//printf("Drawing horizontal\n");
-		while (i < Y1 - X1)
-		{
-			//printf("Drawing %d:%d\n", X0, X1 + i);
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0, 0x00FF0000);// RED
-		}
-	}
+		while (i < (env->nbstep = Y1 - X1))
+			mlx_pixel_put(MLX->ptr, MLX->win, X1 + i++, X0, COLOR);
 	else
 	{
 		coeff_dir = ((float)Y0 - (float)X0) / ((float)Y1 - (float)X1);
-		//printf("coeff calculated = %f\n", coeff_dir);
 		if (coeff_dir > 0)
-		{
 			if (Y1 - X1 > 0)
-			{
-				//printf("drawing diag 1\n");
 				ft_draw_line1(env, coeff_dir);
-			}
 			else
-			{
-				//printf("drawing diag 3\n");
-				//ft_draw_line3(env, coeff_dir);
-			}
-		}
+				ft_draw_line3(env, coeff_dir);
 		else
-		{
 			if (Y1 - X1 > 0)
-			{
-				//printf("drawing diag 2\n");
 				ft_draw_line2(env, coeff_dir);
-			}
 			else
-			{
-				//printf("drawing diag 4\n");
-				//ft_draw_line4(env, coeff_dir);
-			}
-		}
+				ft_draw_line4(env, coeff_dir);
 	}
 }

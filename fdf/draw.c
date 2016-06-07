@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:53:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/02 19:22:18 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/07 19:32:23 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,41 +26,53 @@ void	draw_pixel_pattern(t_env *env)
 		while (j < env->y)
 		{
 			PXL = (int *)malloc(sizeof(int) * 2);
-			PXL[0] = D_WIDTH;
-			PXL[1] = D_HEIGHT;
+			PXL[0] = (i + 1) * env->scale - (MATRIX[i][j] * env->depth)
+				+ env->w_step;
+			PXL[1] = ((i + j + 1) * env->scale) + env->h_step;
 			j++;
 		}
 		i++;
 	}
 }
 
-int		color_value(int value)
-{
-	if (value == 0)
-		return (0x00FF00);
-	else if (value > 0)
-		return (0x0000FF);
-	else
-		return (0xFF0000);
-}
-
 void	color_select(int start, int end, t_env *env)
 {
-	env->c_start = color_value(start);
-	env->c_end = color_value(end);
+	if (start == 0)
+		env->color_start = 10;
+	else if (start <= -10)
+		env->color_start = 0;
+	else if (start < 0)
+		env->color_start = 10 - start;
+	else if (start >= 10)
+		env->color_start = 20;
+	else
+		env->color_start = 10 + start;
+	if (end == 0)
+		env->color_end = 10;
+	else if (end <= -10)
+		env->color_end = 0;
+	else if (end < 0)
+		env->color_end = 10 - end;
+	else if (end >= 10)
+		env->color_end = 20;
+	else
+		env->color_end = 10 + end;
 }
 
 int		color_gradient(t_env *env)
 {
-	if (env->c_start > env->c_end)
-		env->gradient_step = (env->c_start - env->c_end) / (env->nbstep * 100);
-	else if (env->c_start < env->c_end)
-		env->gradient_step = (env->c_end - env->c_start) / (env->nbstep * 100);
+	int color;
+
+	if (env->color_start > env->color_end)
+		env->grad_step = -env->nbstep / (env->color_start - env->color_end);
+	else if (env->color_start < env->color_end)
+		env->grad_step = env->nbstep / (env->color_end - env->color_start);
 	else
-		env->gradient_step = 0;
-	env->color = env->c_start + (env->gradient_step * env->actual_step);
-	env->actual_step++;
-	return (env->color);
+		return (env->grad[(int)env->color_start]);
+	color = env->color_start + (env->actual_step / env->grad_step) + 0.5;
+	if (env->actual_step < env->nbstep)
+		env->actual_step++;
+	return (env->grad[color]);
 }
 
 void	draw(t_env *env)
@@ -77,18 +89,18 @@ void	draw(t_env *env)
 		{
 			X0 = PXL[0];
 			X1 = PXL[1];
-			if (j < env->y - 1) // horizontal
+			if (j < env->y - 1)
 			{
 				Y0 = PXL_H[0];
 				Y1 = PXL_H[1];
-				color_select(MATRIX[i][j] * DP, MATRIX[i][j+1] * DP, env);
+				color_select(MATRIX[i][j] * DP, MATRIX[i][j + 1] * DP, env);
 				draw_diag_select(env);
 			}
-			if (i < env->x - 1) // vertical
+			if (i < env->x - 1)
 			{
 				Y0 = PXL_V[0];
 				Y1 = PXL_V[1];
-				color_select(MATRIX[i][j] * DP, MATRIX[i+1][j] * DP, env);
+				color_select(MATRIX[i][j] * DP, MATRIX[i + 1][j] * DP, env);
 				draw_diag_select(env);
 			}
 			j++;

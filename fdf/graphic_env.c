@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 18:00:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/02 14:10:35 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/07 19:20:54 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	graphic_init(t_env *env)
 {
-	MLX->w = 2560;//(env->y + 1) * D_SCALE;
-	MLX->h = 1420;//(env->x + 1) * D_SCALE;
+	MLX->w = 1000;
+	MLX->h = 1000;
 	MLX->ptr = mlx_init();
 	MLX->win = mlx_new_window(MLX->ptr, MLX->w, MLX->h, env->title);
 }

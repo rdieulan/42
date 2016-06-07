@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 18:53:47 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/02 14:31:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/07 19:15:44 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@ void	zoom(int keycode, t_env *env)
 {
 	if (keycode == 69)
 	{
-		env->scale += 5;
-		env->h_step += 5;
-		env->w_step += 5;
+		env->scale += 2;
+		env->h_step += 2;
+		env->w_step += 2;
 	}
 	else
 	{
-		env->scale -= 5;
-		env->h_step -= 5;
-		env->w_step -= 5;
+		env->scale -= 2;
+		env->h_step -= 2;
+		env->w_step -= 2;
 	}
 }
 
 void	move(int keycode, t_env *env)
 {
 	if (keycode == 123)
-		env->h_step += env->scale;
-	else if (keycode == 124)
 		env->h_step -= env->scale;
+	else if (keycode == 124)
+		env->h_step += env->scale;
 	else if (keycode == 125)
-		env->w_step -= env->scale;
-	else
 		env->w_step += env->scale;
+	else
+		env->w_step -= env->scale;
 }
 
 int		key_hooker(int keycode, t_env *env)

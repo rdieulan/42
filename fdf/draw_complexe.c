@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/22 16:03:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/02 19:23:41 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/07 19:33:32 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void		ft_draw_line1(t_env *env, float coeff_dir)
 {
-	float		i;
-	float		j;
-	float		tmp;
+	float	i;
+	float	j;
+	float	tmp;
 
 	i = 1;
 	j = 1;
@@ -50,46 +50,10 @@ void		ft_draw_line2(t_env *env, float coeff_dir)
 	}
 }
 
-void		ft_draw_line3(t_env *env, float coeff_dir)
+void		draw_diag_select(t_env *env)
 {
-	float	i;
-	float	j;
-	float	tmp;
-
-	j = -1;
-	i = 1;
-	while (X0 + j > X1 || Y0 + i < Y1)
-	{
-		tmp = j / i;
-		if (tmp >= coeff_dir)
-			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j--, Y0 + i, COLOR);
-		else
-			mlx_pixel_put(MLX->ptr, MLX->win, X0 + j, Y0 + i++, COLOR);
-	}
-}
-
-void		ft_draw_line4(t_env *env, float coeff_dir)
-{
-	float	i;
-	float	j;
-	float	tmp;
-
-	i = 1;
-	j = 1;
-	while (X1 + j < X0 || Y1 + i < Y0)
-	{
-		tmp = j / i;
-		if (tmp >= coeff_dir)
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j, Y1 + i++, COLOR);
-		else
-			mlx_pixel_put(MLX->ptr, MLX->win, X1 + j++, Y1 + i, COLOR);
-	}
-}
-
-void	draw_diag_select(t_env *env)
-{
-	int i;
-	float coeff_dir;
+	int		i;
+	float	coeff_dir;
 
 	i = 0;
 	env->actual_step = 0;
@@ -104,14 +68,8 @@ void	draw_diag_select(t_env *env)
 	{
 		coeff_dir = ((float)Y0 - (float)X0) / ((float)Y1 - (float)X1);
 		if (coeff_dir > 0)
-			if (Y1 - X1 > 0)
-				ft_draw_line1(env, coeff_dir);
-			else
-				ft_draw_line3(env, coeff_dir);
+			ft_draw_line1(env, coeff_dir);
 		else
-			if (Y1 - X1 > 0)
-				ft_draw_line2(env, coeff_dir);
-			else
-				ft_draw_line4(env, coeff_dir);
+			ft_draw_line2(env, coeff_dir);
 	}
 }

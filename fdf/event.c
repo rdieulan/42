@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 18:53:47 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/07 19:15:44 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/10 16:20:25 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ int		key_hooker(int keycode, t_env *env)
 		move(keycode, env);
 	else if (keycode == 116 || keycode == 121)
 		depth(keycode, env);
-	else
-		printf("unassigned keycode : %d\n", keycode);
 	mlx_clear_window(MLX->ptr, MLX->win);
+	set_menu(env);
 	draw(env);
 	return (0);
 }

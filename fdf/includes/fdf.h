@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:22:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/07 19:30:12 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/10 16:26:06 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <math.h>
 # include "../libft/includes/libft.h"
 
+# define WSZ 1000
+# define HSZ 1000
+# define MENU HSZ - (HSZ / 20)
 # define D_SCALE 10
 # define W_STEP 30
 # define H_STEP 30
@@ -73,4 +76,5 @@ void				draw(t_env *env);
 void				draw_diag_select(t_env *env);
 int					key_hooker(int keycode, t_env *env);
 int					color_gradient(t_env *env);
+void				set_menu(t_env *env);
 #endif

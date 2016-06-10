@@ -1,4 +1,4 @@
-NAME = ./fdf
+NAME = fractol
 SRC = main.c\
 	  get_matrix.c\
 	  graphic_env.c\

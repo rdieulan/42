@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:19:59 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/07 19:26:09 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:30:31 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,14 @@ int		main(int argc, char **argv)
 	gradient_init(env);
 	if (argc == 2)
 		env->matrix = get_matrix(argv[1], env);
-	else
+	else if (argc == 1)
 	{
 		printf("argument missing.\n");
+		return (0);
+	}
+	else
+	{
+		printf("too many argument.\n");
 		return (0);
 	}
 	graphic_process(env);

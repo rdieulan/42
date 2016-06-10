@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/15 13:53:37 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/07 19:32:23 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/10 17:00:35 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,26 @@ int		color_gradient(t_env *env)
 	return (env->grad[color]);
 }
 
+void	to_diag(t_env *env, int i, int j)
+{
+	X0 = PXL[0];
+	X1 = PXL[1];
+	if (j < env->y - 1)
+	{
+		Y0 = PXL_H[0];
+		Y1 = PXL_H[1];
+		color_select(MATRIX[i][j] * DP, MATRIX[i][j + 1] * DP, env);
+		draw_diag_select(env);
+	}
+	if (i < env->x - 1)
+	{
+		Y0 = PXL_V[0];
+		Y1 = PXL_V[1];
+		color_select(MATRIX[i][j] * DP, MATRIX[i + 1][j] * DP, env);
+		draw_diag_select(env);
+	}
+}
+
 void	draw(t_env *env)
 {
 	int i;
@@ -87,22 +107,7 @@ void	draw(t_env *env)
 		j = 0;
 		while (j < env->y)
 		{
-			X0 = PXL[0];
-			X1 = PXL[1];
-			if (j < env->y - 1)
-			{
-				Y0 = PXL_H[0];
-				Y1 = PXL_H[1];
-				color_select(MATRIX[i][j] * DP, MATRIX[i][j + 1] * DP, env);
-				draw_diag_select(env);
-			}
-			if (i < env->x - 1)
-			{
-				Y0 = PXL_V[0];
-				Y1 = PXL_V[1];
-				color_select(MATRIX[i][j] * DP, MATRIX[i + 1][j] * DP, env);
-				draw_diag_select(env);
-			}
+			to_diag(env, i, j);
 			j++;
 		}
 		i++;

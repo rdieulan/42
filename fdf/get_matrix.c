@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/14 17:11:52 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/07 19:25:11 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/10 16:55:48 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int		*str_int_to_tab(char *str, t_env *env)
 	tmp = ft_strsplit(str, ' ');
 	while (tmp[i] != NULL)
 		i++;
-	env->y = i;
+	if ((env->y == 0 || i < env->y) && i > 0)
+		env->y = i;
 	matrix_line = (int *)malloc(sizeof(int) * i--);
 	while (i >= 0)
 	{
@@ -52,11 +53,12 @@ int		**get_matrix(char *file, t_env *env)
 	char	*line;
 	int		i;
 	int		fd;
+	int		error;
 
 	i = 0;
 	fd = open(file, O_RDONLY);
 	matrix = (int **)malloc(sizeof(int *) * line_counter(file, env));
-	while (get_next_line(fd, &line) > 0)
+	while ((error = get_next_line(fd, &line)) > 0)
 		matrix[i++] = str_int_to_tab(line, env);
 	return (matrix);
 }

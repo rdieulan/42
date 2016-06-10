@@ -6,7 +6,7 @@
 #    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/02 14:30:37 by rdieulan          #+#    #+#              #
-#    Updated: 2016/03/02 16:11:44 by rdieulan         ###   ########.fr        #
+#    Updated: 2016/06/10 17:28:46 by rdieulan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,15 +85,18 @@ FLAG = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(FLAG) $(SRC)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@echo "libft compilation"
+	@gcc -c $(FLAG) $(SRC)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 clean:
-	/bin/rm -f $(OBJS)
+	@echo "libft object's deletion"
+	@/bin/rm -f $(OBJS)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@echo "libft executable's deletion"
+	@/bin/rm -f $(NAME)
 
 re: fclean all
 

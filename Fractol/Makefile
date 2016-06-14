@@ -1,12 +1,11 @@
 NAME = fractol
 SRC = main.c\
-	  get_matrix.c\
-	  graphic_env.c\
-	  draw.c\
-	  event.c\
-	  draw_complexe.c
+	  mandelbrot.c\
+	  julia.c\
+	  draw.c
+
 OBJ = $(SRC:%.c=%.o)
-	CFLAGS = -Wextra -Werror -Wall -Ofast -L/usr/local/lib/ -I/usr/local/include -lmlx\
+CFLAGS = -Wextra -Werror -Wall -L/usr/local/lib/ -I/usr/local/include -lmlx\
 	-framework OpenGL -framework AppKit
 RM = /bin/rm -f
 LIBFT = ./libft/libft.a

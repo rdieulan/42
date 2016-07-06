@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/16 17:27:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/06 18:30:15 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	graphic_init(t_env *env)
 {
 	env->ptr = mlx_init();
 	env->win = mlx_new_window(env->ptr, WIN_W, WIN_H, env->title);
-	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
-	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len), &(env->endian));
 	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
 	mlx_mouse_hook(env->win, mouse_hooker, env);
 }
@@ -50,15 +48,15 @@ int		main(int argc, char **argv)
 		env = env_init(argv[1]);
 		graphic_init(env);
 		if (ft_strcmp(argv[1], "mandelbrot") == 0)
-			set_mandelbrot(env);
+			set_mandelbrot(env, 0);
 		else if (ft_strcmp(argv[1], "julia") == 0)
-			set_julia(env);
+			set_julia(env, 0);
 		else if (ft_strcmp(argv[1], "custom") == 0)
-			set_custom(env);
+			set_custom(env, 0);
 		else
-			printf("Fractal inconnue\n");
+			ft_putstr("Fractal inconnue\n");
 	}
 	else
-		printf("trop ou trop eu d'arguments\n");
+		ft_putstr("trop ou trop eu d'arguments\n");
 	return (0);
 }

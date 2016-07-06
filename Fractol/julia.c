@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/16 16:24:22 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/06 17:53:11 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	julia_scan(t_env *env)
 	double	y;
 
 	x = 0;
-	while (x < env->image_x)
+	while (x < WIN_H)
 	{
 		y = 0;
-		while (y < env->image_y)
+		while (y < WIN_W)
 		{
 			julia(env, x, y);
 			y++;
@@ -56,19 +56,20 @@ void	julia_scan(t_env *env)
 	}
 }
 
-void	set_julia(t_env *env)
+void	set_julia(t_env *env, int mod)
 {
-	env->x1 = -1;
-	env->x2 = 1;
-	env->y1 = -1.2;
-	env->y2 = 1.2;
-	env->red = 0;
-	env->green = 0;
-	env->blue = 0;
-	env->zoom = 400;
-	env->it_max = 60;
-	env->image_x = (env->x2 - env->x1) * env->zoom;
-	env->image_y = (env->y2 - env->y1) * env->zoom;
+	if (mod == 0)
+	{
+		env->x1 = -1;
+		env->x2 = 1;
+		env->y1 = -1.2;
+		env->y2 = 1.2;
+		env->red = 0;
+		env->green = 0;
+		env->blue = 0;
+		env->zoom = 400;
+		env->it_max = 60;
+	}
 	julia_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 	mlx_loop(env->ptr);

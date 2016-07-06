@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:07:44 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/16 16:29:46 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/06 17:53:34 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	custom_scan(t_env *env)
 	double	y;
 
 	x = 0;
-	while (x < env->image_x)
+	while (x < WIN_H)
 	{
 		y = 0;
-		while (y < env->image_y)
+		while (y < WIN_W)
 		{
 			custom(env, x, y);
 			y++;
@@ -56,19 +56,20 @@ void	custom_scan(t_env *env)
 	}
 }
 
-void	set_custom(t_env *env)
+void	set_custom(t_env *env, int mod)
 {
-	env->x1 = -2;
-	env->x2 = 1;
-	env->y1 = -1.6;
-	env->y2 = 1;
-	env->red = 0;
-	env->green = 0;
-	env->blue = 0;
-	env->zoom = 300;
-	env->it_max = 50;
-	env->image_x = (env->x2 - env->x1) * env->zoom;
-	env->image_y = (env->y2 - env->y1) * env->zoom;
+	if (mod == 0)
+	{
+		env->x1 = -2;
+		env->x2 = 1;
+		env->y1 = -1.6;
+		env->y2 = 1;
+		env->red = 0;
+		env->green = 0;
+		env->blue = 0;
+		env->zoom = 300;
+		env->it_max = 50;
+	}
 	custom_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 	mlx_loop(env->ptr);

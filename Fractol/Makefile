@@ -2,6 +2,9 @@ NAME = fractol
 SRC = main.c\
 	  mandelbrot.c\
 	  julia.c\
+	  custom.c\
+	  key_event.c\
+	  mouse_event.c\
 	  draw.c
 
 OBJ = $(SRC:%.c=%.o)

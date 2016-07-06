@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/14 19:22:56 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/16 16:52:59 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ typedef struct	s_env
 void	draw(t_env *env, float x, float y);
 void	set_mandelbrot(t_env *env);
 void	set_julia(t_env *env);
+void	set_custom(t_env *env);
 double	module_light(double x, double y, char sign);
+int		key_hooker(int keycode, t_env *env);
+int		mouse_hooker(int button, t_env *env);
 //void	set_julia(t_env *env);
 //void	set_newton(t_env *env);
 

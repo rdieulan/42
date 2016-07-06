@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   custom.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/16 16:24:22 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/06/16 16:07:44 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/06/16 16:29:46 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	julia(t_env *env, double x, double y)
+void	custom(t_env *env, double x, double y)
 {
 	int		it;
 	double	tmp;
 
-	env->c_r = 0.285;
-	env->c_i = 0.01;
-	env->z_r = (x / env->zoom) + env->x1;
-	env->z_i = (y / env->zoom) + env->y1;
+	env->c_r = (y / env->zoom) + env->y1;
+	env->c_i = (x / env->zoom) + env->x1;
+	env->z_r = 0.155;//(y / env->zoom) + env->y1;
+	env->z_i = (x / env->zoom) + env->x1;
 	it = 0;
 	while ((module_light(env->z_r, env->z_i, '+') < 4) && it < env->it_max)
 	{
@@ -38,7 +38,7 @@ void	julia(t_env *env, double x, double y)
 	}
 }
 
-void	julia_scan(t_env *env)
+void	custom_scan(t_env *env)
 {
 	double	x;
 	double	y;
@@ -49,28 +49,27 @@ void	julia_scan(t_env *env)
 		y = 0;
 		while (y < env->image_y)
 		{
-			julia(env, x, y);
+			custom(env, x, y);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	set_julia(t_env *env)
+void	set_custom(t_env *env)
 {
-	env->x1 = -1;
+	env->x1 = -2;
 	env->x2 = 1;
-	env->y1 = -1.2;
-	env->y2 = 1.2;
+	env->y1 = -1.6;
+	env->y2 = 1;
 	env->red = 0;
 	env->green = 0;
 	env->blue = 0;
-	env->zoom = 400;
-	env->it_max = 60;
+	env->zoom = 300;
+	env->it_max = 50;
 	env->image_x = (env->x2 - env->x1) * env->zoom;
 	env->image_y = (env->y2 - env->y1) * env->zoom;
-	julia_scan(env);
+	custom_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 	mlx_loop(env->ptr);
 }
-

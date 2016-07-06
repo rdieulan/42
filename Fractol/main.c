@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/14 19:18:46 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/06/16 17:27:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	graphic_init(t_env *env)
 	env->win = mlx_new_window(env->ptr, WIN_W, WIN_H, env->title);
 	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len), &(env->endian));
+	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
+	mlx_mouse_hook(env->win, mouse_hooker, env);
 }
 
 double	module_light(double x, double y, char sign)
@@ -51,8 +53,8 @@ int		main(int argc, char **argv)
 			set_mandelbrot(env);
 		else if (ft_strcmp(argv[1], "julia") == 0)
 			set_julia(env);
-		else if (ft_strcmp(argv[1], "newton") == 0)
-			;//set_newton(env);
+		else if (ft_strcmp(argv[1], "custom") == 0)
+			set_custom(env);
 		else
 			printf("Fractal inconnue\n");
 	}

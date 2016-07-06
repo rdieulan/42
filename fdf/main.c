@@ -1,4 +1,4 @@
-* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/02 16:19:59 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/14 14:54:44 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/06 15:22:07 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ int		main(int argc, char **argv)
 		env->matrix = get_matrix(argv[1], env);
 	else if (argc == 1)
 	{
-		printf("argument missing.\n");
+		ft_putstr("argument missing.\n");
 		return (0);
 	}
 	else
 	{
-		printf("too many argument.\n");
+		ft_putstr("too many argument.\n");
 		return (0);
 	}
 	graphic_process(env);

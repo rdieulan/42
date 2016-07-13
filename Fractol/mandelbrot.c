@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/06 19:00:06 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/13 15:33:07 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	mandelbrot(t_env *env, double x, double y)
 	}
 	if (it == env->it_max)
 	{
-		env->blue = 255 - (env->z_r * 100) - (env->c_r * 100);
-		printf("blue : %d\n", env->blue);
+		env->blue = (module_light(env->z_r, env->z_i, '+') * 1000);
 		draw(env, x, y);
 	}
 	else
@@ -72,8 +71,8 @@ void	set_mandelbrot(t_env *env, int mod)
 		env->green = 0;
 		env->blue = 0;
 		env->zoom = 200;
-		env->it_max = 100;
-		env->posx = -50;
+		env->it_max = 50;
+		env->posx = 0;
 		env->posy = 0;
 	}
 	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);

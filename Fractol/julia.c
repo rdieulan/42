@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/06 17:53:11 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/27 20:29:33 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@ void	julia(t_env *env, double x, double y)
 {
 	int		it;
 	double	tmp;
+	double	mod;
 
-	env->c_r = 0.285;
-	env->c_i = 0.01;
 	env->z_r = (x / env->zoom) + env->x1;
 	env->z_i = (y / env->zoom) + env->y1;
 	it = 0;
@@ -33,7 +32,9 @@ void	julia(t_env *env, double x, double y)
 		draw(env, x, y);
 	else
 	{
-		env->blue = (it * 255) / env->it_max;
+		env->blue = module_light(env->z_r, env->z_i, '+') * it;
+		env->green = (it * 255) / env->it_max;
+		env->red = (it * 255) / env->it_max;
 		draw(env, x, y);
 	}
 }
@@ -44,10 +45,10 @@ void	julia_scan(t_env *env)
 	double	y;
 
 	x = 0;
-	while (x < WIN_H)
+	while (x < WIN_H - env->posx)
 	{
 		y = 0;
-		while (y < WIN_W)
+		while (y < WIN_W - env->posy)
 		{
 			julia(env, x, y);
 			y++;
@@ -58,20 +59,25 @@ void	julia_scan(t_env *env)
 
 void	set_julia(t_env *env, int mod)
 {
-	if (mod == 0)
-	{
-		env->x1 = -1;
-		env->x2 = 1;
-		env->y1 = -1.2;
-		env->y2 = 1.2;
-		env->red = 0;
-		env->green = 0;
-		env->blue = 0;
-		env->zoom = 400;
-		env->it_max = 60;
-	}
+
+	env->x1 = -1;
+	env->x2 = 1;
+	env->y1 = -1.2;
+	env->y2 = 1.2;
+	env->red = 0;
+	env->green = 0;
+	env->blue = 0;
+	env->zoom = 212.587320;
+	env->it_max = 70.862440;
+	env->posx = 0;
+	env->posy = 0;
+	env->c_r = 0.285;
+	env->c_i = 0.01;
+	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
+	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len), &(env->endian));
 	julia_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
+	mlx_hook(env->win, 6, 1L >> 0, motion_notify, env);
 	mlx_loop(env->ptr);
 }
 

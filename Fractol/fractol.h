@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/13 15:10:05 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/07/27 20:33:32 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_env
 	int		len;
 	int		endian;
 	double	zoom;
-	int		it_max;
+	double	it_max;
 	double	x1;
 	double	x2;
 	double	y1;
@@ -50,10 +50,13 @@ typedef struct	s_env
 
 void	draw(t_env *env, float x, float y);
 void	set_mandelbrot(t_env *env, int mod);
+void	mandel_scan(t_env *env);
 void	set_julia(t_env *env, int mod);
+void	julia_scan(t_env *env);
 void	set_custom(t_env *env, int mod);
 double	module_light(double x, double y, char sign);
 int		key_hooker(int keycode, t_env *env);
 int		mouse_hooker(int button, t_env *env);
+int		motion_notify(int x, int y, t_env *env);
 
 #endif

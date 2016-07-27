@@ -5,6 +5,7 @@ SRC = main.c\
 	  custom.c\
 	  key_event.c\
 	  mouse_event.c\
+	  motion_notify.c\
 	  draw.c
 
 OBJ = $(SRC:%.c=%.o)

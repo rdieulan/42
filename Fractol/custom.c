@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:07:44 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/06 17:53:34 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 18:38:18 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	custom(t_env *env, double x, double y)
 	int		it;
 	double	tmp;
 
-	env->c_r = (y / env->zoom) + env->y1;
+	env->c_r = 0;
 	env->c_i = (x / env->zoom) + env->x1;
-	env->z_r = 0.155;//(y / env->zoom) + env->y1;
+	env->z_r = 0.155;
 	env->z_i = (x / env->zoom) + env->x1;
 	it = 0;
 	while ((module_light(env->z_r, env->z_i, '+') < 4) && it < env->it_max)
@@ -67,7 +67,7 @@ void	set_custom(t_env *env, int mod)
 		env->red = 0;
 		env->green = 0;
 		env->blue = 0;
-		env->zoom = 300;
+		env->zoom = 200;
 		env->it_max = 50;
 	}
 	custom_scan(env);

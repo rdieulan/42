@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/27 15:58:57 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 17:43:40 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ double	module_light(double x, double y, char sign)
 int		main(int argc, char **argv)
 {
 	t_env *env;
+	int error;
 
+	error = 0;
 	if (argc == 2)
 	{
 		env = env_init(argv[1]);
@@ -54,9 +56,17 @@ int		main(int argc, char **argv)
 		else if (ft_strcmp(argv[1], "custom") == 0)
 			set_custom(env, 0);
 		else
-			ft_putstr("Fractal inconnue\n");
+		{
+			ft_putstr("Unknowm parameter\n");
+			error = 1;
+		}
 	}
 	else
-		ft_putstr("trop ou trop eu d'arguments\n");
+	{
+		ft_putstr("Wrong number of parameter ( must be 1 )\n");
+		error = 1;
+	}
+	if (error == 1)
+		ft_putstr("Usage : ./fractol [julia | mandelbrot | custom]");
 	return (0);
 }

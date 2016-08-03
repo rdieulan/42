@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 18:35:30 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 19:44:07 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,14 @@ void	mandel_scan(t_env *env)
 	}
 }
 
-void	set_mandelbrot(t_env *env, int mod)
+void	set_mandelbrot(t_env *env)
 {
 	env->x1 = -2.1;
-	env->x2 = 0.6;
-	env->y1 = -1.2;
-	env->y2 = 1.2;
+	env->y1 = -1.5;
 	env->red = 0;
 	env->green = 0;
 	env->blue = 0;
-	env->zoom = 200;
+	env->zoom = 150;
 	env->it_max = 50;
 	env->posx = 0;
 	env->posy = 0;

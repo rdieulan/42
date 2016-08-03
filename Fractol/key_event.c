@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 17:46:35 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 19:34:14 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -20,9 +20,7 @@ int		key_hooker(int keycode, t_env *env)
 		env->zoom *= 1.1 ;
 		env->it_max *= 1.1;
 		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
-		env->x2 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
 		env->y1 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
-		env->y2 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
 		env->posx -= env->zoom / 10;
 		env->posy -= env->zoom / 10;
 	}
@@ -31,9 +29,7 @@ int		key_hooker(int keycode, t_env *env)
 		env->zoom /= 1.1;
 		env->it_max /= 1.1;
 		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
-		env->x2 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
 		env->y1 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
-		env->y2 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
 		env->posx += env->zoom / 10;
 		env->posy += env->zoom / 10;
 	}
@@ -59,7 +55,7 @@ int		key_hooker(int keycode, t_env *env)
 	else if (ft_strcmp(env->title, "julia") == 0)
 		julia_scan(env);
 	else if (ft_strcmp(env->title, "custom") == 0)
-		;
+		custom_scan(env);
 	else
 		;
 	mlx_put_image_to_window(env->ptr, env->win, env->img, env->posx, env->posy);

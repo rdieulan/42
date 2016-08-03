@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 17:13:04 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 19:32:51 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ void	julia_scan(t_env *env)
 	}
 }
 
-void	set_julia(t_env *env, int mod)
+void	set_julia(t_env *env)
 {
 
 	env->x1 = -1;
-	env->x2 = 1;
 	env->y1 = -1.2;
-	env->y2 = 1.2;
 	env->red = 0;
 	env->green = 0;
 	env->blue = 0;

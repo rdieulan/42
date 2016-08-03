@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/07/27 20:33:32 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 19:32:30 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ typedef struct	s_env
 	double	zoom;
 	double	it_max;
 	double	x1;
-	double	x2;
 	double	y1;
-	double	y2;
 	double	c_r;
 	double	c_i;
 	double	z_r;
@@ -49,11 +47,12 @@ typedef struct	s_env
 }				t_env;
 
 void	draw(t_env *env, float x, float y);
-void	set_mandelbrot(t_env *env, int mod);
+void	set_mandelbrot(t_env *env);
 void	mandel_scan(t_env *env);
-void	set_julia(t_env *env, int mod);
+void	set_julia(t_env *env);
 void	julia_scan(t_env *env);
-void	set_custom(t_env *env, int mod);
+void	set_custom(t_env *env);
+void	custom_scan(t_env *env);
 double	module_light(double x, double y, char sign);
 int		key_hooker(int keycode, t_env *env);
 int		mouse_hooker(int button, t_env *env);

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 17:43:40 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/03 19:13:36 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int		main(int argc, char **argv)
 		env = env_init(argv[1]);
 		graphic_init(env);
 		if (ft_strcmp(argv[1], "mandelbrot") == 0)
-			set_mandelbrot(env, 0);
+			set_mandelbrot(env);
 		else if (ft_strcmp(argv[1], "julia") == 0)
-			set_julia(env, 0);
+			set_julia(env);
 		else if (ft_strcmp(argv[1], "custom") == 0)
-			set_custom(env, 0);
+			set_custom(env);
 		else
 		{
-			ft_putstr("Unknowm parameter\n");
+			ft_putstr("This fractal doesnt exist.\n");
 			error = 1;
 		}
 	}
 	else
 	{
-		ft_putstr("Wrong number of parameter ( must be 1 )\n");
+		ft_putstr("Wrong number of parameter ( must be 1 ).\n");
 		error = 1;
 	}
 	if (error == 1)

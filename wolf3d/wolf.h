@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                          :+:      :+:    :+:   */
+/*   wolf.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 14:47:57 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/09/05 16:01:05 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRACTOL_H
-# define FRACTOL_H
+#ifndef WOLF_H
+# define WOLF_H
 
 # include <mlx.h>
 # include <stdio.h>
@@ -19,8 +19,8 @@
 # include <math.h>
 # include "libft/includes/libft.h"
 
-# define WIN_H 800
-# define WIN_W 800
+# define WIN_W 1920
+# define WIN_H 1080
 
 typedef struct	s_env
 {
@@ -31,33 +31,10 @@ typedef struct	s_env
 	int			bits;
 	int			len;
 	int			endian;
-	double		zoom;
-	double		it_max;
-	double		x1;
-	double		y1;
-	double		c_r;
-	double		c_i;
-	double		z_r;
-	double		z_i;
-	int			red;
-	int			green;
-	int			blue;
 	char		*title;
-	int			posx;
-	int			posy;
-	int			error;
 }				t_env;
 
-void			draw(t_env *env, float x, float y);
-void			set_mandelbrot(t_env *env);
-void			mandel_scan(t_env *env);
-void			set_julia(t_env *env);
-void			julia_scan(t_env *env);
-void			set_custom(t_env *env);
-void			custom_scan(t_env *env);
-double			module_light(double x, double y, char sign);
 int				key_hooker(int kcode, t_env *env);
-int				mouse_hooker(int button, t_env *env);
-int				motion_notify(int x, int y, t_env *env);
+void			game(t_env *env);
 
 #endif

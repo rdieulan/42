@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/27 15:46:35 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 19:11:11 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/08 14:52:21 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int		motion_notify(int x, int y, t_env *env)
 	{
 		env->c_r = ((double)x + 750) / 2000;
 		env->c_i = ((double)y + 750) / 2000;
-		env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
-		env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len), &(env->endian));
+		env->img = mlx_new_image(env->ptr, WIN_W - env->posx,
+				WIN_H - env->posy);
+		env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
+				&(env->endian));
 		julia_scan(env);
-		mlx_put_image_to_window(env->ptr, env->win, env->img, env->posx, env->posy);
+		mlx_put_image_to_window(env->ptr, env->win, env->img, env->posx,
+				env->posy);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/03 19:44:07 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/08/08 15:33:14 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	mandelbrot(t_env *env, double x, double y)
 		tmp = env->z_r;
 		env->z_r = module_light(env->z_r, env->z_i, '-') + env->c_r;
 		env->z_i = (2 * env->z_i * tmp) + env->c_i;
-		it++;
+		it += 20;
 	}
 	if (it == env->it_max)
 		draw(env, x, y);
@@ -60,17 +60,19 @@ void	mandel_scan(t_env *env)
 
 void	set_mandelbrot(t_env *env)
 {
-	env->x1 = -2.1;
-	env->y1 = -1.5;
+	env->x1 = -2.5;
+	env->y1 = -2.5;
 	env->red = 0;
 	env->green = 0;
 	env->blue = 0;
-	env->zoom = 150;
-	env->it_max = 50;
+	env->zoom = 180;
+	env->it_max = 100;
 	env->posx = 0;
 	env->posy = 0;
+	env->error = 0;
 	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
-	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len), &(env->endian));
+	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
+			&(env->endian));
 	mandel_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 	mlx_loop(env->ptr);

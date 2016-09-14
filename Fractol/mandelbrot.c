@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 14:38:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 18:17:56 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	set_mandelbrot(t_env *env)
 	env->it_max = 100;
 	env->posx = 0;
 	env->posy = 0;
+	env->ptr = mlx_init();
+	env->win = mlx_new_window(env->ptr, WIN_W, WIN_H, env->title);
 	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
 			&(env->endian));

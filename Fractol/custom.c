@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:07:44 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 15:41:53 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:38:56 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,9 @@ void	set_custom(t_env *env)
 	env->it_max = 100;
 	env->posx = 0;
 	env->posy = 0;
-	env->error = 0;
 	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
 			&(env->endian));
 	custom_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
-	mlx_loop(env->ptr);
 }

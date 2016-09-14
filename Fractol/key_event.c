@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 15:46:49 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:40:21 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	zoom_io(int kcode, t_env *env)
 {
 	if (kcode == 69)
 	{
+		ft_putstr("ZOOM IN\n");
 		env->zoom *= 1.1;
 		env->it_max *= 1.1;
 		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
@@ -25,13 +26,20 @@ void	zoom_io(int kcode, t_env *env)
 	}
 	else
 	{
+		ft_putstr("ZOOM OUT\n");
 		env->zoom /= 1.1;
+		ft_putstr("A\n");
 		env->it_max /= 1.1;
+		ft_putstr("B\n");
 		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
+		ft_putstr("C\n");
 		env->y1 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
+		ft_putstr("D\n");
 		env->posx += env->zoom / 10;
+		ft_putstr("E\n");
 		env->posy += env->zoom / 10;
 	}
+	ft_putstr("END ZOON\n");
 }
 
 void	arrowkey(int kcode, t_env *env)

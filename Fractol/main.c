@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 15:00:29 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:42:36 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_env		*env_init(char *title)
 
 	env = (t_env*)malloc(sizeof(t_env));
 	env->title = title;
-	env->error = 1;
 	return (env);
 }
 
@@ -26,8 +25,6 @@ void		graphic_init(t_env *env)
 {
 	env->ptr = mlx_init();
 	env->win = mlx_new_window(env->ptr, WIN_W, WIN_H, env->title);
-	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
-	mlx_mouse_hook(env->win, mouse_hooker, env);
 }
 
 double		module_light(double x, double y, char sign)
@@ -55,11 +52,13 @@ int			main(int argc, char **argv)
 		else if (ft_strcmp(argv[1], "custom") == 0)
 			set_custom(env);
 		else
-			ft_putstr("This fractal doesnt exist.\n");
+			ft_putstr("Usage : ./fractol [julia | mandelbrot | custom].\n");
 	}
 	else
 		ft_putstr("Wrong number of parameter ( must be 1 ).\n");
-	if (env->error == 1)
-		ft_putstr("Usage : ./fractol [julia | mandelbrot | custom]");
+	mlx_mouse_hook(env->win, m_hooker, env);
+	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
+	mlx_hook(env->win, 6, 1L << 0, motion_notify, env);
+	mlx_loop(env->ptr);
 	return (0);
 }

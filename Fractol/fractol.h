@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 14:47:57 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:59:39 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct	s_env
 	char		*title;
 	int			posx;
 	int			posy;
-	int			error;
 }				t_env;
 
 void			draw(t_env *env, float x, float y);
@@ -57,7 +56,9 @@ void			set_custom(t_env *env);
 void			custom_scan(t_env *env);
 double			module_light(double x, double y, char sign);
 int				key_hooker(int kcode, t_env *env);
-int				mouse_hooker(int button, t_env *env);
+int				m_hooker(int button, t_env *env);
 int				motion_notify(int x, int y, t_env *env);
+void			win_refresh(t_env *env);
+void			zoom_io(int kcode, t_env *env);
 
 #endif

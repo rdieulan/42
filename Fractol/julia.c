@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/08/08 15:36:28 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/14 14:39:43 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,9 @@ void	set_julia(t_env *env)
 	env->posy = 0;
 	env->c_r = 0.285;
 	env->c_i = 0.01;
-	env->error = 0;
 	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
 			&(env->endian));
 	julia_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
-	mlx_hook(env->win, 6, 1L >> 0, motion_notify, env);
-	mlx_loop(env->ptr);
 }

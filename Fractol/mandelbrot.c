@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 18:17:56 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/21 17:23:04 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,26 @@ void	mandelbrot(t_env *env, double x, double y)
 	env->z_r = 0;
 	env->z_i = 0;
 	it = 0;
-	while ((module_light(env->z_r, env->z_i, '+') < 4) && it < env->it_max)
-	{
-		tmp = env->z_r;
-		env->z_r = module_light(env->z_r, env->z_i, '-') + env->c_r;
-		env->z_i = (2 * env->z_i * tmp) + env->c_i;
-		it += 20;
-	}
-	if (it == env->it_max)
+	if (module_light(env->c_r, env->c_i, '+') > 4)
 		draw(env, x, y);
 	else
 	{
-		env->blue = module_light(env->z_r, env->z_i, '+') * it;
-		env->green = (it * 255) / env->it_max;
-		env->red = (it * 255) / env->it_max;
-		draw(env, x, y);
+		while ((module_light(env->z_r, env->z_i, '+') < 4) && it < env->it_max)
+		{
+			tmp = env->z_r;
+			env->z_r = module_light(env->z_r, env->z_i, '-') + env->c_r;
+			env->z_i = (2 * env->z_i * tmp) + env->c_i;
+			it += 20;
+		}
+		if (it >= env->it_max)
+			draw(env, x, y);
+		else
+		{
+			env->blue = module_light(env->z_r, env->z_i, '-') * it;
+			env->red =  (env->it_max / 255 ) * it;
+			env->green = (env->it_max / 255 ) * it;
+			draw(env, x, y);
+		}
 	}
 }
 
@@ -46,12 +51,12 @@ void	mandel_scan(t_env *env)
 	double	y;
 
 	x = 0;
-	while (x < WIN_H - env->posx)
+	while (x < WIN_H)
 	{
 		y = 0;
-		while (y < WIN_W - env->posy)
+		while (y < WIN_W)
 		{
-			mandelbrot(env, x, y);
+			mandelbrot(env, x - env->posx, y - env->posy);
 			y++;
 		}
 		x++;
@@ -65,8 +70,8 @@ void	set_mandelbrot(t_env *env)
 	env->red = 0;
 	env->green = 0;
 	env->blue = 0;
-	env->zoom = 180;
-	env->it_max = 100;
+	env->zoom = 150;
+	env->it_max = 160;
 	env->posx = 0;
 	env->posy = 0;
 	env->ptr = mlx_init();
@@ -76,4 +81,5 @@ void	set_mandelbrot(t_env *env)
 			&(env->endian));
 	mandel_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
+	event_start(env);
 }

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 19:18:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 18:19:08 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/21 17:09:22 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ void	julia(t_env *env, double x, double y)
 	env->z_r = (x / env->zoom) + env->x1;
 	env->z_i = (y / env->zoom) + env->y1;
 	it = 0;
+
 	while ((module_light(env->z_r, env->z_i, '+') < 4) && it < env->it_max)
 	{
 		tmp = env->z_r;
 		env->z_r = module_light(env->z_r, env->z_i, '-') + env->c_r;
 		env->z_i = (2 * env->z_i * tmp) + env->c_i;
-		it += 20;
+		it += 10;
 	}
 	if (it >= env->it_max)
 		draw(env, x, y);
@@ -44,12 +45,12 @@ void	julia_scan(t_env *env)
 	double	y;
 
 	x = 0;
-	while (x < WIN_H - env->posx)
+	while (x < WIN_H)
 	{
 		y = 0;
-		while (y < WIN_W - env->posy)
+		while (y < WIN_W)
 		{
-			julia(env, x, y);
+			julia(env, x - env->posx, y - env->posy);
 			y++;
 		}
 		x++;
@@ -76,4 +77,5 @@ void	set_julia(t_env *env)
 			&(env->endian));
 	julia_scan(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
+	event_start(env);
 }

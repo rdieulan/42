@@ -6,60 +6,49 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 14:40:21 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/21 17:51:44 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	zoom_io(int kcode, t_env *env)
+void	zoom_io(int kcode, int x, int y, t_env *env)
 {
 	if (kcode == 69)
 	{
-		ft_putstr("ZOOM IN\n");
+		env->posx = (env->posx - x) * 1.1 + x;
+		env->posy = (env->posy - y) * 1.1 + y;
 		env->zoom *= 1.1;
-		env->it_max *= 1.1;
-		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
-		env->y1 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
-		env->posx -= env->zoom / 10;
-		env->posy -= env->zoom / 10;
 	}
 	else
-	{
-		ft_putstr("ZOOM OUT\n");
-		env->zoom /= 1.1;
-		ft_putstr("A\n");
-		env->it_max /= 1.1;
-		ft_putstr("B\n");
-		env->x1 += ((WIN_H / 2) / WIN_W / 2) / env->z_r * 100;
-		ft_putstr("C\n");
-		env->y1 += ((WIN_W / 2) / WIN_H / 2) / env->z_r * 100;
-		ft_putstr("D\n");
-		env->posx += env->zoom / 10;
-		ft_putstr("E\n");
-		env->posy += env->zoom / 10;
-	}
-	ft_putstr("END ZOON\n");
+		if (env->zoom > 150)
+		{
+			env->posx = (env->posx - x) / 1.1 + x;
+			env->posy = (env->posy - y) / 1.1 + y;
+			env->zoom /= 1.1;
+		}
 }
 
 void	arrowkey(int kcode, t_env *env)
 {
 	if (kcode == 123)
-		env->posx -= env->zoom / 10;
-	else if (kcode == 124)
-		env->posx += env->zoom / 10;
-	else if (kcode == 125)
-		env->posy += env->zoom / 10;
+		env->posx -= env->zoom * 0.1;
+	else if (kcode == 124 && env->posx < 0)
+		env->posx += env->zoom * 0.1;
+	else if (kcode == 125 && env->posy < 0)
+		env->posy += env->zoom * 0.1;
+	else if (kcode == 126)
+		env->posy -= env->zoom * 0.1;
 	else
-		env->posy -= env->zoom / 10;
+		;
 }
 
 void	itmod(int kcode, t_env *env)
 {
 	if (kcode == 116)
-		env->it_max *= 1.1;
+		env->it_max += 40;
 	else if (kcode == 121)
-		env->it_max /= 1.1;
+		env->it_max -= 40;
 }
 
 void	win_refresh(t_env *env)
@@ -83,7 +72,7 @@ int		key_hooker(int kcode, t_env *env)
 	if (kcode == 53)
 		exit(0);
 	else if (kcode == 69 || kcode == 78)
-		zoom_io(kcode, env);
+		zoom_io(kcode, 0, 0, env);
 	else if (kcode == 123 || kcode == 124 || kcode == 125 || kcode == 126)
 		arrowkey(kcode, env);
 	else if (kcode == 116 || kcode == 121)

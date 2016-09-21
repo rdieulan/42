@@ -6,13 +6,21 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 16:02:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/06/14 18:43:08 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/21 18:15:51 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	draw(t_env *env, float x, float y)
+void	event_start(t_env *env)
+{
+	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
+	mlx_mouse_hook(env->win, m_hooker, env);
+	mlx_hook(env->win, 6, 1L << 0, motion_notify, env);
+	mlx_loop(env->ptr);
+}
+
+void	draw(t_env *env, double x, double y)
 {
 	int nb;
 

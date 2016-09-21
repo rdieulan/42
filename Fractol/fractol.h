@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 18:11:56 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/21 18:15:46 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ typedef struct	s_env
 	int			posy;
 }				t_env;
 
-void			draw(t_env *env, float x, float y);
+void			event_start(t_env *env);
+void			draw(t_env *env, double x, double y);
 void			set_mandelbrot(t_env *env);
 void			mandel_scan(t_env *env);
 void			set_julia(t_env *env);
@@ -59,6 +60,6 @@ int				key_hooker(int kcode, t_env *env);
 int				m_hooker(int button, int x, int y, t_env *env);
 int				motion_notify(int x, int y, t_env *env);
 void			win_refresh(t_env *env);
-void			zoom_io(int kcode, t_env *env);
+void			zoom_io(int kcode, int x, int y, t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:24:02 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/21 18:15:46 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 13:42:42 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_env
 
 void			event_start(t_env *env);
 void			draw(t_env *env, double x, double y);
+void			set_man_first(t_env *env);
 void			set_mandelbrot(t_env *env);
 void			mandel_scan(t_env *env);
 void			set_julia(t_env *env);

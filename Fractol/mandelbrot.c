@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/21 17:23:04 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 14:05:17 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	mandelbrot(t_env *env, double x, double y)
 	int		it;
 	double	tmp;
 
-	env->c_r = (x / env->zoom) + env->x1;
-	env->c_i = (y / env->zoom) + env->y1;
+	env->c_r = ((x - env->posx) / env->zoom) + env->x1;
+	env->c_i = ((y - env->posy) / env->zoom) + env->y1;
 	env->z_r = 0;
 	env->z_i = 0;
 	it = 0;
@@ -56,14 +56,14 @@ void	mandel_scan(t_env *env)
 		y = 0;
 		while (y < WIN_W)
 		{
-			mandelbrot(env, x - env->posx, y - env->posy);
+			mandelbrot(env, x, y);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	set_mandelbrot(t_env *env)
+void	set_man_first(t_env *env)
 {
 	env->x1 = -2.5;
 	env->y1 = -2.5;
@@ -76,7 +76,12 @@ void	set_mandelbrot(t_env *env)
 	env->posy = 0;
 	env->ptr = mlx_init();
 	env->win = mlx_new_window(env->ptr, WIN_W, WIN_H, env->title);
-	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
+	set_mandelbrot(env);
+}
+
+void	set_mandelbrot(t_env *env)
+{
+	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
 			&(env->endian));
 	mandel_scan(env);

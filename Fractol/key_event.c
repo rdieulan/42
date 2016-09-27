@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/21 17:51:44 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 14:05:51 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	arrowkey(int kcode, t_env *env)
 {
 	if (kcode == 123)
 		env->posx -= env->zoom * 0.1;
-	else if (kcode == 124 && env->posx < 0)
+	else if (kcode == 124)
 		env->posx += env->zoom * 0.1;
-	else if (kcode == 125 && env->posy < 0)
+	else if (kcode == 125)
 		env->posy += env->zoom * 0.1;
 	else if (kcode == 126)
 		env->posy -= env->zoom * 0.1;
@@ -54,17 +54,12 @@ void	itmod(int kcode, t_env *env)
 void	win_refresh(t_env *env)
 {
 	mlx_destroy_image(env->ptr, env->img);
-	env->img = mlx_new_image(env->ptr, WIN_W - env->posx, WIN_H - env->posy);
-	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
-			&(env->endian));
 	if (ft_strcmp(env->title, "mandelbrot") == 0)
-		mandel_scan(env);
+		set_mandelbrot(env);
 	else if (ft_strcmp(env->title, "julia") == 0)
 		julia_scan(env);
 	else
 		custom_scan(env);
-	mlx_put_image_to_window(env->ptr, env->win, env->img, env->posx,
-			env->posy);
 }
 
 int		key_hooker(int kcode, t_env *env)

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/21 15:12:57 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 13:43:03 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			main(int argc, char **argv)
 	{
 		env = env_init(argv[1]);
 		if (ft_strcmp(argv[1], "mandelbrot") == 0)
-			set_mandelbrot(env);
+			set_man_first(env);
 		else if (ft_strcmp(argv[1], "julia") == 0)
 			set_julia(env);
 		else if (ft_strcmp(argv[1], "custom") == 0)

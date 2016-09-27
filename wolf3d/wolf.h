@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/14 17:50:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 16:59:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,14 @@ typedef struct	s_env
 	char		*title;
 	int			**map;
 	int			map_size;
+	int			col;
+	int			color;
 	double		posx;
 	double		posy;
-	double		p_angle;
+	double		rx;
+	double		ry;
+	double		angle;
+	double		tmp_angle;
 }				t_env;
 
 int				key_hooker(int kcode, t_env *env);

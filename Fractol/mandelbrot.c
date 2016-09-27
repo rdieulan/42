@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:39 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/27 14:05:17 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 15:25:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ void	mandelbrot(t_env *env, double x, double y)
 		if (it >= env->it_max)
 			draw(env, x, y);
 		else
-		{
-			env->blue = module_light(env->z_r, env->z_i, '-') * it;
-			env->red =  (env->it_max / 255 ) * it;
-			env->green = (env->it_max / 255 ) * it;
-			draw(env, x, y);
-		}
+			mandel_color(env, x, y, it);
 	}
 }
 

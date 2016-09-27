@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/27 14:05:51 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 15:17:54 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	zoom_io(int kcode, int x, int y, t_env *env)
 		env->zoom *= 1.1;
 	}
 	else
+	{
 		if (env->zoom > 150)
 		{
 			env->posx = (env->posx - x) / 1.1 + x;
 			env->posy = (env->posy - y) / 1.1 + y;
 			env->zoom /= 1.1;
 		}
+	}
 }
 
 void	arrowkey(int kcode, t_env *env)
@@ -57,9 +59,9 @@ void	win_refresh(t_env *env)
 	if (ft_strcmp(env->title, "mandelbrot") == 0)
 		set_mandelbrot(env);
 	else if (ft_strcmp(env->title, "julia") == 0)
-		julia_scan(env);
+		set_julia(env);
 	else
-		custom_scan(env);
+		set_custom(env);
 }
 
 int		key_hooker(int kcode, t_env *env)

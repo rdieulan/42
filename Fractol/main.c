@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/14 14:03:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/27 13:43:03 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/09/27 14:19:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int			main(int argc, char **argv)
 		if (ft_strcmp(argv[1], "mandelbrot") == 0)
 			set_man_first(env);
 		else if (ft_strcmp(argv[1], "julia") == 0)
-			set_julia(env);
+			set_ju_first(env);
 		else if (ft_strcmp(argv[1], "custom") == 0)
-			set_custom(env);
+			set_cus_first(env);
 		else
 			ft_putstr("Usage : ./fractol [julia | mandelbrot | custom].\n");
 	}

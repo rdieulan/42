@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_event.c                                        :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/05 15:55:57 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 13:20:08 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/10/07 13:24:44 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/10/07 13:40:35 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int key_hooker(int kcode, t_env *env)
+void	draw(t_env *env, double x, double y)
 {
-	if (kcode == 53)
-		exit(0);
-	printf("keycode = %d\n", kcode);
-	free(env->addr);
-	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
-	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
-			&(env->endian));
-	game(env);
-	return (0);
+	ft_putstr("draw\n");
+	int	nb;
+
+	nb = (x * env->bits) / 8 + (y * env->len);
+	env->addr[nb] = env->blue;
+	env->addr[nb + 1] = env->green;
+	env->addr[nb + 2] = env->red;
 }

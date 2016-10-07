@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/27 16:59:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 15:02:00 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,27 @@
 
 void	ray_draw(t_env *env, double dist)
 {
+	ft_putstr("ray_draw()\n");
 	int	i;
 	int	height;
 	
 	dist *= cos(env->tmp_angle - env->ray_angle);
 	height = 1200 / dist;
-	i = 400 - height;
+	i = (WIN_H / 2) - height;
 	if (i < 0)
 		i = 0;
 	color_set(env);
-	if (env->shadow == 1)
-		shadow_set(env, dist);
-	while (i < 400 + height && i < 800 && i >= 0 && env->col < WIN_W)
+	while (i < (WIN_H / 2) + height && i < WIN_H && i >= 0 && env->col < WIN_W)
 		draw(env, env->col, i++);
 	env->red = 0;
 	env->blue = 0;
 	env->green = 0;
-	while (i < 400 + height + 4 && i < 800)
+	while (i < (WIN_H / 2) + height + 4 && i < WIN_H)
 		draw(env, env->col, i++);
 	env->red = 0;
 	env->blue = 50;
 	env->green = 0;
-	while (i < 799 && i > 0 && env->col < 1280)
+	while (i < (WIN_H - 1) && i > 0 && env->col < WIN_W)
 	{	
 		draw(env, env->col, i++);
 		if (i % 3 == 0)
@@ -45,6 +44,7 @@ void	ray_draw(t_env *env, double dist)
 
 int		is_wall(t_env *env, double i)
 {
+	//ft_putstr("is_wall()\n");
 	double	tmpx;
 	double	tmpy;
 	int		x;
@@ -56,6 +56,7 @@ int		is_wall(t_env *env, double i)
 	tmpy = env->posy + (env->ry * i);
 	y = (int)tmpy;
 	color_wall(env, x, y, i);
+	printf("y = %d / x = %d\n", y ,x);
 	if (env->map[y] && env->map[y][x] && env->map[y][x] == '1')
 		return(1);
 	return(0);
@@ -63,6 +64,7 @@ int		is_wall(t_env *env, double i)
 
 void	check_env(t_env *env)
 {
+	ft_putstr("check_env()\n");
 	double	i;
 	int		wall;
 	int		color;
@@ -77,17 +79,20 @@ void	check_env(t_env *env)
 	{
 		if (is_wall(env, i) == 1)
 		{
+			printf("is_wall(1). i = \n");
 			i -= 0.1;
 			while (is_wall(env, i) != 1)
 				i += 0.001;
-			a = 1;
+			wall = 1;
 			ray_draw(env, i);
 		}
+		i += 0.1;
 	}
 }
 
 void	ray_set(t_env *env)
 {
+	ft_putstr("ray_set()\n");
 	double	ray_angle;
 	double	rx;
 	double	ry;
@@ -103,6 +108,7 @@ void	ray_set(t_env *env)
 		env->rx = rx;
 		env->ry = ry;
 		env->tmp_angle = ray_angle;
+		printf("%f, %f, %f, %f, %f\n", env->posx, env->posy, env->rx, env->ry, env->map_size);
 		check_env(env);
 		ray_angle += M_PI / 6 / WIN_W;
 		env->col++;
@@ -112,4 +118,5 @@ void	ray_set(t_env *env)
 void	game(t_env *env)
 {
 	ray_set(env);
+	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 }

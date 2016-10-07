@@ -1,7 +1,7 @@
 NAME = wolf3d
 SRC = *.c
 OBJ = $(SRC:%.c=%.o)
-CFLAGS = -Wextra -Werror -Wall -L/usr/local/lib/ -I/usr/local/include -lmlx\
+CFLAGS =  -Wextra -Werror -Wall -g -fsanitize=address -L/usr/local/lib/ -I/usr/local/include -lmlx\
 	-framework OpenGL -framework AppKit
 RM = /bin/rm -f
 LIBFT = ./libft/libft.a
@@ -16,7 +16,7 @@ $(NAME): $(OBJ)
 
 $(OBJ):
 	@echo "make: object's compilation"
-	@gcc -c $(SRC) $(I)
+	@gcc -g -c $(SRC) $(I)
 
 $(LIBFT):
 	@make -C ./libft/

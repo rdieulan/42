@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_event.c                                        :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/05 15:55:57 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 13:20:08 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/10/07 12:45:27 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/10/07 14:09:14 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-int key_hooker(int kcode, t_env *env)
+void	color_set(t_env *env)
 {
-	if (kcode == 53)
-		exit(0);
-	printf("keycode = %d\n", kcode);
-	free(env->addr);
-	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
-	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
-			&(env->endian));
-	game(env);
-	return (0);
+	ft_putstr("color set()\n");;
+}
+
+void	color_wall(t_env *env, int x, int y, double i)
+{
+	//ft_putstr("color wall()\n");
+	x = y;
+	y = i;
 }

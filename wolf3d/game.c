@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 19:31:29 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 20:13:00 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ray_draw(t_env *env, double dist)
 	int	height;
 	int	wall_start;
 
+	printf("%f : %f\n", env->rx * dist, env->ry * dist);
 	dist = hypot(env->rx * dist, env->ry * dist);
 	printf("dist %f\n", dist);
 	height = (WIN_W / 2 / tan(FOV / 2) * BLOCK_UNIT) / dist;
@@ -44,7 +45,6 @@ int		is_wall(t_env *env, int i)
 	int		x;
 	int		y;
 
-	env->color = 1;
 	x = (int)((env->posx + (env->rx * i)) / BLOCK_UNIT);
 	y = (int)((env->posy + (env->ry * i)) / BLOCK_UNIT);
 	//printf("map[%d][%d] == %d\n", y, x, env->map[y][x]);
@@ -73,6 +73,7 @@ void	ray_cast(t_env *env)
 				i -= 0.1;
 			i += 0.1;
 			wall = 1;
+
 			ray_draw(env, i);
 		}
 		i += 1;

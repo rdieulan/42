@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 19:08:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 20:04:50 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct	s_env
 	int			map_size;
 	double		step;
 	int			col;
-	int			color;
 	double		posx;
 	double		posy;
 	double		rx;

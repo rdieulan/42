@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 15:02:00 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 19:31:29 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,61 +17,50 @@ void	ray_draw(t_env *env, double dist)
 	ft_putstr("ray_draw()\n");
 	int	i;
 	int	height;
-	
-	dist *= cos(env->tmp_angle - env->ray_angle);
-	height = 1200 / dist;
-	i = (WIN_H / 2) - height;
-	if (i < 0)
-		i = 0;
-	color_set(env);
-	while (i < (WIN_H / 2) + height && i < WIN_H && i >= 0 && env->col < WIN_W)
+	int	wall_start;
+
+	dist = hypot(env->rx * dist, env->ry * dist);
+	printf("dist %f\n", dist);
+	height = (WIN_W / 2 / tan(FOV / 2) * BLOCK_UNIT) / dist;
+	wall_start = (WIN_H - height) / 2;
+	i = 0;
+	color_sky(env);
+	printf("start sky : %d\n", i);
+	while (wall_start > 0 && i < wall_start)
 		draw(env, env->col, i++);
-	env->red = 0;
-	env->blue = 0;
-	env->green = 0;
-	while (i < (WIN_H / 2) + height + 4 && i < WIN_H)
+	printf("start wall : %d / %d\n", i, height);
+	color_wall(env);
+	while (i < height + wall_start && i < WIN_H)
 		draw(env, env->col, i++);
-	env->red = 0;
-	env->blue = 50;
-	env->green = 0;
-	while (i < (WIN_H - 1) && i > 0 && env->col < WIN_W)
-	{	
+	printf("start ground : %d\n", i);
+	color_ground(env);
+	while (i < (WIN_H - 1) && i > 0)
 		draw(env, env->col, i++);
-		if (i % 3 == 0)
-			env->blue++;
-	}
 }
 
-int		is_wall(t_env *env, double i)
+int		is_wall(t_env *env, int i)
 {
 	//ft_putstr("is_wall()\n");
-	double	tmpx;
-	double	tmpy;
 	int		x;
 	int		y;
 
 	env->color = 1;
-	tmpx = env->posx + (env->rx * i);
-	x = (int)tmpx;
-	tmpy = env->posy + (env->ry * i);
-	y = (int)tmpy;
-	color_wall(env, x, y, i);
-	printf("y = %d / x = %d\n", y ,x);
-	if (env->map[y] && env->map[y][x] && env->map[y][x] == '1')
+	x = (int)((env->posx + (env->rx * i)) / BLOCK_UNIT);
+	y = (int)((env->posy + (env->ry * i)) / BLOCK_UNIT);
+	//printf("map[%d][%d] == %d\n", y, x, env->map[y][x]);
+	if (env->map[y] && env->map[y][x] && env->map[y][x] == 1)
 		return(1);
 	return(0);
 }
 
-void	check_env(t_env *env)
+void	ray_cast(t_env *env)
 {
-	ft_putstr("check_env()\n");
+	//printf("check_env()\n");
 	double	i;
 	int		wall;
-	int		color;
 
 	i = 0;
 	wall = 0;
-	color = 0;
 	while (env->posx + (env->rx * i) < env->map_size &&
 			env->posy + (env->ry * i) < env->map_size &&
 			env->posx + (env->rx * i) >= 0 &&
@@ -79,38 +68,32 @@ void	check_env(t_env *env)
 	{
 		if (is_wall(env, i) == 1)
 		{
-			printf("is_wall(1). i = \n");
-			i -= 0.1;
-			while (is_wall(env, i) != 1)
-				i += 0.001;
+			//printf("WALL !!!\n");
+			while (is_wall(env, i) == 1)
+				i -= 0.1;
+			i += 0.1;
 			wall = 1;
 			ray_draw(env, i);
 		}
-		i += 0.1;
+		i += 1;
 	}
 }
 
 void	ray_set(t_env *env)
 {
-	ft_putstr("ray_set()\n");
+	//ft_putstr("ray_set()\n");
 	double	ray_angle;
-	double	rx;
-	double	ry;
 
 	env->col = 0;
-	ray_angle = env->angle - (M_PI / 12);
-	rx = cos(ray_angle);
-	ry = sin(ray_angle);
-	while (ray_angle < env->angle + (M_PI / 12))
+	ray_angle = env->angle - (FOV / 2);
+	env->rx = cos(ray_angle);
+	env->ry = sin(ray_angle);
+	while (env->col < WIN_W)
 	{
-		rx = cos(ray_angle);
-		ry = sin(ray_angle);
-		env->rx = rx;
-		env->ry = ry;
-		env->tmp_angle = ray_angle;
-		printf("%f, %f, %f, %f, %f\n", env->posx, env->posy, env->rx, env->ry, env->map_size);
-		check_env(env);
-		ray_angle += M_PI / 6 / WIN_W;
+		env->rx = cos(ray_angle);
+		env->ry = sin(ray_angle);
+		ray_cast(env);
+		ray_angle += env->step;
 		env->col++;
 	}
 }

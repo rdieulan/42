@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/07 13:24:44 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 13:40:35 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 19:20:58 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw(t_env *env, double x, double y)
 {
-	ft_putstr("draw\n");
+	//ft_putstr("draw\n");
 	int	nb;
 
 	nb = (x * env->bits) / 8 + (y * env->len);

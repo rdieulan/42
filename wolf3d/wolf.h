@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 13:52:30 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/07 19:08:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef struct	s_env
 	char		*title;
 	int			**map;
 	int			map_memory;
-	double		map_size;
+	int			map_size;
+	double		step;
 	int			col;
 	int			color;
 	double		posx;
@@ -57,7 +58,8 @@ typedef struct	s_env
 int				key_hooker(int kcode, t_env *env);
 void			game(t_env *env);
 void			draw(t_env *env, double x, double y);
-void			color_set(t_env *env);
-void			color_wall(t_env *env, int x, int y, double i);
+void			color_ground(t_env *env);
+void			color_sky(t_env *env);
+void			color_wall(t_env *env);
 
 #endif

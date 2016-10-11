@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 20:14:25 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/11 17:45:33 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_env	*env_init(char *title)
 	t_env *env;
 	env = (t_env*)malloc(sizeof(t_env));
 	env->title = title;
-	env->angle = 360;
-	env->step = FOV / WIN_W;
+	env->angle = 45;
+	env->step = (double)FOV / WIN_W;
 	env->blue = 0;
 	env->red = 0;
 	env->green = 0;
@@ -45,8 +45,8 @@ void	get_map_info(char *line, t_env *env)
 	info = ft_strsplit(line, ':');
 	env->map_memory = ft_atoi(info[0]);
 	env->map_size = env->map_memory * BLOCK_UNIT;
-	env->posx = ((double)ft_atoi(info[1]) * BLOCK_UNIT) + (BLOCK_UNIT / 2);
-	env->posy = ((double)ft_atoi(info[2]) * BLOCK_UNIT) + (BLOCK_UNIT / 2);
+	env->posx = ((double)ft_atoi(info[1]) * BLOCK_UNIT) + ((double)BLOCK_UNIT / 2);
+	env->posy = ((double)ft_atoi(info[2]) * BLOCK_UNIT) + ((double)BLOCK_UNIT / 2);
 	env->map = (int **)malloc(sizeof(int *) * env->map_memory);
 
 }

@@ -6,34 +6,44 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 20:13:00 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/11 19:00:47 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
+double	angle_norm(double angle)
+{
+	if (angle < 0)
+		return (angle + 360);
+	else if (angle > 360)
+		return (angle - 360);
+	else
+		return (angle);
+}
+
 void	ray_draw(t_env *env, double dist)
 {
-	ft_putstr("ray_draw()\n");
 	int	i;
 	int	height;
 	int	wall_start;
 
-	printf("%f : %f\n", env->rx * dist, env->ry * dist);
-	dist = hypot(env->rx * dist, env->ry * dist);
+	printf("%f : %f\n", env->rx, env->ry);
+	dist = (env->posx - env->wx) + (env->posy - env->wy);
 	printf("dist %f\n", dist);
-	height = (WIN_W / 2 / tan(FOV / 2) * BLOCK_UNIT) / dist;
+	height = fabs(((double)BLOCK_UNIT / dist) * (((double)WIN_W / 2) / tan((double)FOV / 2)) * 10);
+	printf("height : %d\n", height);
 	wall_start = (WIN_H - height) / 2;
 	i = 0;
 	color_sky(env);
-	printf("start sky : %d\n", i);
+	//printf("start sky : %d\n", i);
 	while (wall_start > 0 && i < wall_start)
 		draw(env, env->col, i++);
-	printf("start wall : %d / %d\n", i, height);
+	//printf("start wall : %d / %d\n", i, height);
 	color_wall(env);
 	while (i < height + wall_start && i < WIN_H)
 		draw(env, env->col, i++);
-	printf("start ground : %d\n", i);
+	//printf("start ground : %d\n", i);
 	color_ground(env);
 	while (i < (WIN_H - 1) && i > 0)
 		draw(env, env->col, i++);
@@ -41,15 +51,18 @@ void	ray_draw(t_env *env, double dist)
 
 int		is_wall(t_env *env, int i)
 {
-	//ft_putstr("is_wall()\n");
-	int		x;
-	int		y;
+	double	x;
+	double	y;
 
-	x = (int)((env->posx + (env->rx * i)) / BLOCK_UNIT);
-	y = (int)((env->posy + (env->ry * i)) / BLOCK_UNIT);
-	//printf("map[%d][%d] == %d\n", y, x, env->map[y][x]);
-	if (env->map[y] && env->map[y][x] && env->map[y][x] == 1)
+	x = ((env->posx + (env->rx * i)) / BLOCK_UNIT);
+	y = ((env->posy + (env->ry * i)) / BLOCK_UNIT);
+	if (env->map[(int)x] && env->map[(int)x][(int)y] && env->map[(int)x][(int)y] == 1)
+	{
+		printf("FOUND WALL[%d][%d] @ {%f:%f}\n", (int)x, (int)y, x * BLOCK_UNIT, y * BLOCK_UNIT);
+		env->wx = x;
+		env->wy = y;
 		return(1);
+	}
 	return(0);
 }
 
@@ -68,12 +81,10 @@ void	ray_cast(t_env *env)
 	{
 		if (is_wall(env, i) == 1)
 		{
-			//printf("WALL !!!\n");
 			while (is_wall(env, i) == 1)
-				i -= 0.1;
-			i += 0.1;
+				i -= 0.01;
+			i += 0.01;
 			wall = 1;
-
 			ray_draw(env, i);
 		}
 		i += 1;
@@ -83,18 +94,18 @@ void	ray_cast(t_env *env)
 void	ray_set(t_env *env)
 {
 	//ft_putstr("ray_set()\n");
-	double	ray_angle;
 
 	env->col = 0;
-	ray_angle = env->angle - (FOV / 2);
-	env->rx = cos(ray_angle);
-	env->ry = sin(ray_angle);
+	env->ray_angle = angle_norm(env->angle - ((double)FOV / 2));
+	env->rx = cos(env->ray_angle);
+	env->ry = sin(env->ray_angle);
 	while (env->col < WIN_W)
 	{
-		env->rx = cos(ray_angle);
-		env->ry = sin(ray_angle);
+		env->rx = cos(env->ray_angle);
+		env->ry = sin(env->ray_angle);
 		ray_cast(env);
-		ray_angle += env->step;
+		env->ray_angle = angle_norm(env->ray_angle + env->step);
+		printf("\nRAY ANGLE = %f\n", env->ray_angle);
 		env->col++;
 	}
 }

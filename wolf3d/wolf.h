@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/07 20:04:50 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/11 16:43:07 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ typedef struct	s_env
 	double		posy;
 	double		rx;
 	double		ry;
+	double		wx;
+	double		wy;
 	double		angle;
 	double		ray_angle;
 	double		tmp_angle;

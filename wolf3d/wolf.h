@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 16:03:47 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 17:40:21 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,17 @@
 
 # define WIN_W 1920
 # define WIN_H 1080
-# define BLOCK_UNIT 100
+# define B_UNIT 100
 # define INIT_ANGLE 90
 # define INIT_SPEED 10
+# define ROTATE_SPEED 10
 # define FOV 60
 # define PROJ_W 320
 # define PROJ_H 200
+# define XMAP0 (int)((env->posx - mapx) / B_UNIT)
+# define XMAP1 (int)((env->posx + mapx) / B_UNIT)
+# define YMAP0 (int)((env->posy - mapy) / B_UNIT)
+# define YMAP1 (int)((env->posy + mapy) / B_UNIT)
 
 typedef struct	s_env
 {

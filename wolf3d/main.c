@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 15:04:31 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 17:21:30 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	get_map_info(char *line, t_env *env)
 
 	info = ft_strsplit(line, ':');
 	env->map_memory = ft_atoi(info[0]);
-	env->map_size = env->map_memory * BLOCK_UNIT;
-	env->posx = ((double)ft_atoi(info[1]) * BLOCK_UNIT) + ((double)BLOCK_UNIT / 2);
-	env->posy = ((double)ft_atoi(info[2]) * BLOCK_UNIT) + ((double)BLOCK_UNIT / 2);
+	env->map_size = env->map_memory * B_UNIT;
+	env->posx = ((double)ft_atoi(info[1]) * B_UNIT) + ((double)B_UNIT / 2);
+	env->posy = ((double)ft_atoi(info[2]) * B_UNIT) + ((double)B_UNIT / 2);
 	env->map = (int **)malloc(sizeof(int *) * env->map_memory);
 
 }

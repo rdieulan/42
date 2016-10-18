@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 15:59:56 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 17:21:02 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ray_draw(t_env *env, double dist)
 	//printf("%f : %f\n", env->rx, env->ry);
 	dist *= cos((env->angle - env->ray_angle) * M_PI / 180);//(env->posx - env->wx) + (env->posy - env->wy);
 	//dist = dist * cos(fabs(env->angle - env->ray_angle) * M_PI / 180);
-	printf("dist %f\n", dist);
-	height = BLOCK_UNIT / dist * ((WIN_W / 2) / tan((FOV / 2) * M_PI / 180));
-	printf("height : %d\n\n", height);
+	//printf("dist %f\n", dist);
+	height = B_UNIT / dist * ((WIN_W / 2) / tan((FOV / 2) * M_PI / 180));
+	//printf("height : %d\n\n", height);
 	wall_start = (WIN_H - height) / 2;
 	i = 0;
 	color_sky(env);
@@ -55,15 +55,15 @@ int		is_wall(t_env *env, int i)
 	double	x;
 	double	y;
 
-	x = ((env->posx + (env->rx * i)) / BLOCK_UNIT);
-	y = ((env->posy + (env->ry * i)) / BLOCK_UNIT);
+	x = ((env->posx + (env->rx * i)) / B_UNIT);
+	y = ((env->posy + (env->ry * i)) / B_UNIT);
 	if (env->map[(int)x] && env->map[(int)x][(int)y] && env->map[(int)x][(int)y] == 1)
 	{
-		printf("FOUND WALL[%d][%d] @ {%f:%f}\n", (int)x, (int)y, x * BLOCK_UNIT, y * BLOCK_UNIT);
-		env->nord = (int)x * BLOCK_UNIT;
-		env->sud = ((int)x + 1) * BLOCK_UNIT;
-		env->ouest = (int)y * BLOCK_UNIT;
-		env->est = ((int)y + 1) * BLOCK_UNIT;
+		//printf("FOUND WALL[%d][%d] @ {%f:%f}\n", (int)x, (int)y, x * BLOCK_UNIT, y * BLOCK_UNIT);
+		env->nord = (int)x * B_UNIT;
+		env->sud = ((int)x + 1) * B_UNIT;
+		env->ouest = (int)y * B_UNIT;
+		env->est = ((int)y + 1) * B_UNIT;
 		env->wx = x;
 		env->wy = y;
 		return(1);

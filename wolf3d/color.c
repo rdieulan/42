@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/07 12:45:27 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 14:44:44 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 17:23:17 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	color_wall(t_env *env)
 	int	modx;
 	int	mody;
 
-	wx = (int)(env->wx * BLOCK_UNIT);
-	wy = (int)(env->wy * BLOCK_UNIT);
-	modx = wx % BLOCK_UNIT;
-	mody = wy % BLOCK_UNIT;
+	wx = (int)(env->wx * B_UNIT);
+	wy = (int)(env->wy * B_UNIT);
+	modx = wx % B_UNIT;
+	mody = wy % B_UNIT;
 	//printf("modulo Y : %d\n", mody);
 	//printf("pre limX : %d\n", wx);
 	//printf("pre limY : %d\n", wy);

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/16 16:42:30 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/09/27 15:17:54 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 14:40:10 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		key_hooker(int kcode, t_env *env)
 	else if (kcode == 116 || kcode == 121)
 		itmod(kcode, env);
 	else
-		;
+		ft_putnbr(kcode);
 	win_refresh(env);
 	return (0);
 }

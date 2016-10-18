@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/11 16:43:07 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 16:03:47 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define WIN_W 1920
 # define WIN_H 1080
 # define BLOCK_UNIT 100
+# define INIT_ANGLE 90
+# define INIT_SPEED 10
 # define FOV 60
 # define PROJ_W 320
 # define PROJ_H 200
@@ -42,12 +44,17 @@ typedef struct	s_env
 	int			map_size;
 	double		step;
 	int			col;
+	int			speed;
 	double		posx;
 	double		posy;
 	double		rx;
 	double		ry;
 	double		wx;
 	double		wy;
+	int			nord;
+	int			sud;
+	int			est;
+	int			ouest;
 	double		angle;
 	double		ray_angle;
 	double		tmp_angle;
@@ -62,5 +69,6 @@ void			draw(t_env *env, double x, double y);
 void			color_ground(t_env *env);
 void			color_sky(t_env *env);
 void			color_wall(t_env *env);
+double			angle_norm(double angle);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/11 17:45:33 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/18 15:04:31 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ t_env	*env_init(char *title)
 	t_env *env;
 	env = (t_env*)malloc(sizeof(t_env));
 	env->title = title;
-	env->angle = 45;
+	env->angle = INIT_ANGLE;
+	env->speed = INIT_SPEED;
 	env->step = (double)FOV / WIN_W;
 	env->blue = 0;
 	env->red = 0;

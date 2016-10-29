@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 17:40:21 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/29 17:40:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "libft/includes/libft.h"
 
 # define WIN_W 1920
-# define WIN_H 1080
+# define WIN_H 1280
 # define B_UNIT 100
 # define INIT_ANGLE 90
 # define INIT_SPEED 10
@@ -66,14 +66,16 @@ typedef struct	s_env
 	int			red;
 	int			blue;
 	int			green;
+	double		ground_grad;
+	int			ground_lim;
 }				t_env;
 
 int				key_hooker(int kcode, t_env *env);
 void			game(t_env *env);
 void			draw(t_env *env, double x, double y);
-void			color_ground(t_env *env);
+void			color_ground(t_env *env, int i);
 void			color_sky(t_env *env);
-void			color_wall(t_env *env);
+void			color_wall(t_env *env, double dist);
 double			angle_norm(double angle);
 
 #endif

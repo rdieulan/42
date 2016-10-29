@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/18 17:21:30 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/10/29 19:19:23 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 t_env	*env_init(char *title)
 {
-	t_env *env;
+	t_env	*env;
+
 	env = (t_env*)malloc(sizeof(t_env));
 	env->title = title;
 	env->angle = INIT_ANGLE;
@@ -49,16 +50,15 @@ void	get_map_info(char *line, t_env *env)
 	env->posx = ((double)ft_atoi(info[1]) * B_UNIT) + ((double)B_UNIT / 2);
 	env->posy = ((double)ft_atoi(info[2]) * B_UNIT) + ((double)B_UNIT / 2);
 	env->map = (int **)malloc(sizeof(int *) * env->map_memory);
-
 }
 
 void	load_map(char *map, t_env *env)
 {
-	int fd;
-	char *line;
-	char **tmp;
-	int i;
-	int j;
+	int		fd;
+	char	*line;
+	char	**tmp;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -79,15 +79,14 @@ void	load_map(char *map, t_env *env)
 	}
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	t_env *env;
+	t_env	*env;
 
 	if (argc == 2)
 	{
 		env = env_init(argv[1]);
 		load_map(argv[1], env);
-		//printf("%f:%f:%f:%f\n", env->map_size, env->posx, env->posy, env->angle);
 		graphic_init(env);
 		game(env);
 	}

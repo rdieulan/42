@@ -1,5 +1,5 @@
 NAME = wolf3d
-SRC = *.c
+SRC = main.c color.c draw.c game.c key_event.c
 OBJ = $(SRC:%.c=%.o)
 CFLAGS =  -Wextra -Werror -Wall -g -fsanitize=address -L/usr/local/lib/ -I/usr/local/include -lmlx\
 	-framework OpenGL -framework AppKit

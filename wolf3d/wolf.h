@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/29 17:40:08 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/07 16:43:07 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,17 @@ typedef struct	s_env
 	int			green;
 	double		ground_grad;
 	int			ground_lim;
+	int			error;
 }				t_env;
 
 int				key_hooker(int kcode, t_env *env);
+int				red_cross(int code, t_env *env);
 void			game(t_env *env);
 void			draw(t_env *env, double x, double y);
 void			color_ground(t_env *env, int i);
 void			color_sky(t_env *env);
 void			color_wall(t_env *env, double dist);
 double			angle_norm(double angle);
+void			ft_error(int error);
 
 #endif

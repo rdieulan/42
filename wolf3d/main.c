@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/29 19:19:23 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/07 17:17:18 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_env	*env_init(char *title)
 	env->blue = 0;
 	env->red = 0;
 	env->green = 0;
+	env->error = 0;
 	return (env);
 }
 
@@ -37,7 +38,49 @@ void	graphic_init(t_env *env)
 	game(env);
 	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 	mlx_hook(env->win, 2, 1L << 0, key_hooker, env);
+	mlx_hook(env->win, 17, (1L << 17), red_cross, env);
 	mlx_loop(env->ptr);
+}
+
+void	check_info_integrity(char **info, t_env *env)
+{
+	int i;
+	int j;
+
+	j = 0;
+	while (j < 3)
+	{
+		i = 0;
+		if (info[j][i])
+		{
+			while (info[j][i])
+			{
+				if (ft_isdigit((int)info[j][i]) == 0)
+					ft_error(4);
+				i++;
+			}
+		}
+		else
+			ft_error(4);
+		j++;
+	}
+}
+
+void	check_line_integrity(char **line, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if ((line[i][0] != '1' && line[i][0] != '0') || line[i][1])
+			env->error = 1;
+		i++;
+	}
+	if (env->error == 1)
+		ft_error(2);
+	if (i != env->map_memory)
+		ft_error(3);
 }
 
 void	get_map_info(char *line, t_env *env)
@@ -45,6 +88,7 @@ void	get_map_info(char *line, t_env *env)
 	char	**info;
 
 	info = ft_strsplit(line, ':');
+	check_info_integrity(info, env);
 	env->map_memory = ft_atoi(info[0]);
 	env->map_size = env->map_memory * B_UNIT;
 	env->posx = ((double)ft_atoi(info[1]) * B_UNIT) + ((double)B_UNIT / 2);
@@ -62,21 +106,77 @@ void	load_map(char *map, t_env *env)
 
 	i = 0;
 	j = 0;
-	fd = open(map, O_RDONLY);
-	get_next_line(fd, &line);
-	get_map_info(line, env);
-	while (get_next_line(fd, &line) > 0)
+	if ((fd = open(map, O_RDONLY)) != -1)
 	{
-		env->map[i] = (int *)malloc(sizeof(int) * env->map_memory);
-		tmp = ft_strsplit(line, ' ');
-		while (j < env->map_memory)
+		if ((get_next_line(fd, &line)) > 0)
+			get_map_info(line, env);
+		while (get_next_line(fd, &line) > 0)
 		{
-			env->map[i][j] = ft_atoi(tmp[j]);
-			j++;
+			env->map[i] = (int *)malloc(sizeof(int) * env->map_memory);
+			tmp = ft_strsplit(line, ' ');
+			check_line_integrity(tmp, env);
+			while (j < env->map_memory)
+			{
+				env->map[i][j] = ft_atoi(tmp[j]);
+				j++;
+			}
+			j = 0;
+			i++;
 		}
-		j = 0;
-		i++;
+		if (i == 0)
+			ft_error(5);
+		if (i != env->map_memory)
+			ft_error(6);
 	}
+	else
+		ft_error(5);
+}
+
+void	ft_error(int error)
+{
+	if (error == 1)
+		ft_putstr("Wrong number of argument. must be 1\n");
+	else
+	{
+		ft_putstr("ERROR : ");
+		if (error == 2)
+			ft_putstr("MAP LINE : contains incorrect values\n");
+		if (error == 3)
+			ft_putstr("MAP LINE : incorrect number of values\n");
+		if (error == 4)
+			ft_putstr("MAP CFG : only positive digit allowed, split ':'\n");
+		if (error == 5)
+			ft_putstr("FILE : incorrect input\n");
+		if (error == 6)
+			ft_putstr("MAP : incorrect number of line\n");
+		if (error == 7)
+			ft_putstr("PLAYER : cant start inside a wall\n");
+		if (error == 8)
+			ft_putstr("PLAYER : cant start outside the map\n");
+	}
+	if (error != 0)
+		exit(error);
+}
+
+void	check_player_start(t_env *env)
+{
+	int x;
+	int y;
+
+	x = env->posx / B_UNIT;
+	y = env->posy / B_UNIT;
+	if (x >= 0 && x < env->map_memory)
+	{
+		if (y >= 0 && y < env->map_memory)
+		{
+			if (env->map[x][y] == 1)
+				ft_error(7);
+		}
+		else
+				ft_error(8);
+	}
+	else
+		ft_error(8);
 }
 
 int		main(int argc, char **argv)
@@ -87,10 +187,10 @@ int		main(int argc, char **argv)
 	{
 		env = env_init(argv[1]);
 		load_map(argv[1], env);
+		check_player_start(env);
 		graphic_init(env);
-		game(env);
 	}
 	else
-		ft_putstr("error");
+		ft_error(1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 16:01:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/10/29 19:20:04 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/15 18:57:47 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ void	ray_draw(t_env *env, double dist)
 	height = ((WIN_W / 2) / tan((FOV / 2) * M_PI / 180)) * (B_UNIT / dist);
 	wall_start = (WIN_H - height) / 2;
 	i = 0;
+	color_sky(env);
 	while (wall_start > 0 && i < wall_start)
-	{
-		color_sky(env);
 		draw(env, env->col, i++);
-	}
 	color_wall(env, dist);
 	while (i < height + wall_start && i < WIN_H)
 		draw(env, env->col, i++);
@@ -85,7 +83,7 @@ void	ray_cast(t_env *env)
 		if (is_wall(env, i) == 1)
 		{
 			while (is_wall(env, i) == 1)
-				i -= 0.1;
+				i -= 0.01;
 			i += 0.01;
 			wall = 1;
 			ray_draw(env, i);

@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:55:57 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/07 17:24:15 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/15 18:46:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,23 @@ int		secu(t_env *env, int kcode)
 	{
 		mapx = cos(env->angle * M_PI / 180) * env->speed;
 		mapy = sin(env->angle * M_PI / 180) * env->speed;
-		if (XMAP0 < 0 || XMAP1 < 0 || YMAP0 < 0 || YMAP1 < 0 ||
-			XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
+		if (XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
 			return (1);
 		if (kcode == 0)
-		{
-			printf("NEW POS : [%d][%d] = %d\n", XMAP0, YMAP1, env->map[XMAP0][YMAP1]);
 			return (env->map[XMAP0][YMAP1]);
-		}
 		else
-		{
-			printf("NEW POS : [%d][%d] = %d\n", XMAP1, YMAP0, env->map[XMAP1][YMAP0]);
 			return (env->map[XMAP1][YMAP0]);
-		}
 	}
 	else
 	{
 		mapx = cos(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
 		mapy = sin(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
-		if (XMAP0 < 0 || XMAP1 < 0 || YMAP0 < 0 || YMAP1 < 0 ||
-			XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
+		if (XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
 			return (1);
 		if (kcode == 1)
-		{
-			printf("NEW POS : [%d][%d] = %d\n", XMAP0, YMAP1, env->map[XMAP0][YMAP1]);
 			return (env->map[XMAP0][YMAP1]);
-		}
 		else
-		{
-			printf("NEW POS : [%d][%d] = %d\n", XMAP1, YMAP0, env->map[XMAP1][YMAP0]);
 			return (env->map[XMAP1][YMAP0]);
-		}
 	}
 }
 
@@ -79,7 +65,6 @@ void	arrowkey(int kcode, t_env *env)
 		env->posx += cos(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
 		env->posy -= sin(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
 	}
-	printf("x : %f\ny : %f\n", env->posx, env->posy);
 }
 
 void	rotate(int kcode, t_env *env)
@@ -108,6 +93,7 @@ int		key_hooker(int kcode, t_env *env)
 
 int		red_cross(int code, t_env *env)
 {
-	ft_putnbr(code);
+	if (code == 28224)
+		exit(0);
 	return (0);
 }

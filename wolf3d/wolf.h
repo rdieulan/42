@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/07 16:43:07 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/15 20:45:19 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ void			draw(t_env *env, double x, double y);
 void			color_ground(t_env *env, int i);
 void			color_sky(t_env *env);
 void			color_wall(t_env *env, double dist);
+void			set_color_wall_north(t_env *env, double dist);
+void			set_color_wall_south(t_env *env, double dist);
+void			set_color_wall_west(t_env *env, double dist);
+void			set_color_wall_east(t_env *env, double dist);
 double			angle_norm(double angle);
 void			ft_error(int error);
+int				motion_notify(int x, int y, t_env *env);
+
 
 #endif

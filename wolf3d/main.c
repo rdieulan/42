@@ -43,7 +43,7 @@ void	graphic_init(t_env *env)
 	mlx_loop(env->ptr);
 }
 
-void	check_info_integrity(char **info, t_env *env)
+void	check_info_integrity(char **info)
 {
 	int i;
 	int j;
@@ -89,7 +89,7 @@ void	get_map_info(char *line, t_env *env)
 	char	**info;
 
 	info = ft_strsplit(line, ':');
-	check_info_integrity(info, env);
+	check_info_integrity(info);
 	if (ft_atoi(info[0]) > 1000 || ft_atoi(info[0]) < 0)
 		ft_error(9);
 	env->map_memory = ft_atoi(info[0]) + 2;
@@ -205,6 +205,22 @@ void	check_player_start(t_env *env)
 	}
 	else
 		ft_error(8);
+}
+
+double		angle_norm(double angle)
+{
+	if (angle < 0)
+		return (angle + 360);
+	else if (angle > 360)
+		return (angle - 360);
+	else
+		return (angle);
+}
+
+void		game(t_env *env)
+{
+		ray_set(env);
+		mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 }
 
 int		main(int argc, char **argv)

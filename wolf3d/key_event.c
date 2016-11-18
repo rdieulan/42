@@ -90,10 +90,3 @@ int		key_hooker(int kcode, t_env *env)
 	game(env);
 	return (0);
 }
-
-int		red_cross(int code, t_env *env)
-{
-	if (code == 28224)
-		exit(0);
-	return (0);
-}

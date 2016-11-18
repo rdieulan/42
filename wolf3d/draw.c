@@ -24,3 +24,17 @@ void	draw(t_env *env, double x, double y)
 		env->addr[nb + 2] = env->red;
 	}
 }
+
+void	draw_ground(t_env *env, double x, double y)
+{
+	int	nb;
+
+	color_ground(env, (int)y);
+	nb = (x * env->bits) / 8 + (y * env->len);
+	if (nb > 0)
+	{
+		env->addr[nb] = env->blue;
+		env->addr[nb + 1] = env->green;
+		env->addr[nb + 2] = env->red;
+	}
+}

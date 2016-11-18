@@ -14,6 +14,7 @@
 
 int		motion_notify(int x, int y, t_env *env)
 {
+		(void)y;
 		env->angle = x;
 		key_hooker(999, env);
 		return (0);

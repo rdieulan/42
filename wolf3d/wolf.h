@@ -13,16 +13,16 @@
 #ifndef WOLF_H
 # define WOLF_H
 
-# include <mlx.h>
+# include "minilibx_macos/mlx.h"
 # include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
 # include "libft/includes/libft.h"
 
-# define WIN_W 1920
-# define WIN_H 1280
-# define B_UNIT 100
+# define WIN_W 1080
+# define WIN_H 720
+# define B_UNIT 64
 # define INIT_ANGLE 90
 # define INIT_SPEED 10
 # define ROTATE_SPEED 10
@@ -71,10 +71,12 @@ typedef struct	s_env
 	int			error;
 }				t_env;
 
-int				key_hooker(int kcode, t_env *env);
-int				red_cross(int code, t_env *env);
+int			key_hooker(int kcode, t_env *env);
+int			red_cross(int code, t_env *env);
 void			game(t_env *env);
+void			ray_set(t_env *env);
 void			draw(t_env *env, double x, double y);
+void			draw_ground(t_env *env, double x, double y);
 void			color_ground(t_env *env, int i);
 void			color_sky(t_env *env);
 void			color_wall(t_env *env, double dist);
@@ -84,7 +86,7 @@ void			set_color_wall_west(t_env *env, double dist);
 void			set_color_wall_east(t_env *env, double dist);
 double			angle_norm(double angle);
 void			ft_error(int error);
-int				motion_notify(int x, int y, t_env *env);
+int			motion_notify(int x, int y, t_env *env);
 
 
 #endif

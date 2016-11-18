@@ -1,35 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2016/06/24 13:16:13 by rdieulan          #+#    #+#              #
+#    Updated: 2016/09/03 10:46:06 by rdieulan         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = wolf3d
-SRC = main.c color.c draw.c game.c key_event.c motion_notify.c \
-	  color_wall.c
-OBJ = $(SRC:%.c=%.o)
-CFLAGS =  -Wextra -Werror -Wall -g -fsanitize=address -L/usr/local/lib/ -I/usr/local/include -lmlx\
-	-framework OpenGL -framework AppKit
-RM = /bin/rm -f
-LIBFT = ./libft/libft.a
-I = -I ./libft/
-L = -L ./libft/ -lft
 
-all: $(LIBFT) $(NAME)
+LIB = libft/libft.a
 
-$(NAME): $(OBJ)
-	@echo "make: executable's compilation"
-	@gcc $(CFLAGS) -o $(NAME) $(OBJ) $(L)
+GLIB = minilibx_macos/libmlx.a
 
-$(OBJ):
-	@echo "make: object's compilation"
-	@gcc -g -c $(SRC) $(I)
+SRC = main.c color_wall.c key_event.c draw.c color.c game.c motion_notify.c\
+	red_cross.c
 
-$(LIBFT):
-	@make -C ./libft/
-	@make clean -C ./libft/
+SRCO = $(SRC:.c=.o)
+
+FLAG = -Wall -Werror -Wextra
+
+GFLAG = -framework OpenGl -framework AppKit
+
+all: $(NAME)
+
+$(NAME): $(SRCO)
+	make -C libft
+	make -C minilibx_macos
+	gcc $(FLAG) -c $(SRC)
+	gcc -o $(NAME) $(GFLAG) $(SRCO) $(LIB) $(GLIB)
 
 clean:
-	@echo "make: object's deletion"
-	@$(RM) $(OBJ)
+	make -C libft clean
+	make -C minilibx_macos clean
+	rm -f $(SRCO)
 
 fclean: clean
-	@echo "make: executable's deletion"
-	@$(RM) $(NAME)
+	make -C libft fclean
+	/bin/rm -f $(NAME)
 
 re: fclean all
 

@@ -12,16 +12,6 @@
 
 #include "wolf.h"
 
-double	angle_norm(double angle)
-{
-	if (angle < 0)
-		return (angle + 360);
-	else if (angle > 360)
-		return (angle - 360);
-	else
-		return (angle);
-}
-
 void	ray_draw(t_env *env, double dist)
 {
 	int	i;
@@ -41,10 +31,7 @@ void	ray_draw(t_env *env, double dist)
 	env->ground_grad = (255 / (double)((WIN_H - i)));
 	env->ground_lim = height + wall_start;
 	while (i < (WIN_H - 1))
-	{
-		color_ground(env, i);
-		draw(env, env->col, i++);
-	}
+		draw_ground(env, env->col, i++);
 }
 
 int		is_wall(t_env *env, double i)
@@ -106,10 +93,4 @@ void	ray_set(t_env *env)
 		env->ry = cos(env->ray_angle * M_PI / 180);
 		env->col++;
 	}
-}
-
-void	game(t_env *env)
-{
-	ray_set(env);
-	mlx_put_image_to_window(env->ptr, env->win, env->img, 0, 0);
 }

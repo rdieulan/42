@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 19:02:08 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/15 19:35:49 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 12:23:27 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		motion_notify(int x, int y, t_env *env)
 {
-		(void)y;
-		env->angle = x;
-		key_hooker(999, env);
-		return (0);
+	(void)y;
+	env->angle = x;
+	key_hooker(999, env);
+	return (0);
 }

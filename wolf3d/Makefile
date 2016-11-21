@@ -6,7 +6,7 @@
 #    By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/24 13:16:13 by rdieulan          #+#    #+#              #
-#    Updated: 2016/09/03 10:46:06 by rdieulan         ###   ########.fr        #
+#    Updated: 2016/11/21 12:21:53 by rdieulan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,17 @@ LIB = libft/libft.a
 
 GLIB = minilibx_macos/libmlx.a
 
-SRC = main.c color_wall.c key_event.c draw.c color.c game.c motion_notify.c\
-	red_cross.c
+SRC = main.c \
+	  color_wall.c \
+	  key_event.c \
+	  draw.c \
+	  color.c \
+	  game.c \
+	  motion_notify.c \
+	  red_cross.c \
+	  integrity.c \
+	  error.c \
+	  loader.c
 
 SRCO = $(SRC:.c=.o)
 

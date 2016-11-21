@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/15 20:45:19 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 11:46:18 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct	s_env
 	int			error;
 }				t_env;
 
-int			key_hooker(int kcode, t_env *env);
-int			red_cross(int code, t_env *env);
+int				key_hooker(int kcode, t_env *env);
+int				red_cross(int code, t_env *env);
 void			game(t_env *env);
 void			ray_set(t_env *env);
 void			draw(t_env *env, double x, double y);
@@ -85,8 +85,10 @@ void			set_color_wall_south(t_env *env, double dist);
 void			set_color_wall_west(t_env *env, double dist);
 void			set_color_wall_east(t_env *env, double dist);
 double			angle_norm(double angle);
+void			load_map(char *map, t_env *env);
+void			check_info_integrity(char **info);
+void			check_line_integrity(char **line, t_env *env);
+void			check_player_start(t_env *env);
 void			ft_error(int error);
-int			motion_notify(int x, int y, t_env *env);
-
-
+int				motion_notify(int x, int y, t_env *env);
 #endif

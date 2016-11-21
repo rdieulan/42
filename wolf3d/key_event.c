@@ -6,11 +6,26 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:55:57 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/15 18:46:38 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 12:23:10 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+
+int		secu_suite(t_env *env, int kcode, int lim)
+{
+	double	mapx;
+	double	mapy;
+
+	mapx = cos(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
+	mapy = sin(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
+	if (XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
+		return (1);
+	if (kcode == 1)
+		return (env->map[XMAP0][YMAP1]);
+	else
+		return (env->map[XMAP1][YMAP0]);
+}
 
 int		secu(t_env *env, int kcode)
 {
@@ -31,16 +46,7 @@ int		secu(t_env *env, int kcode)
 			return (env->map[XMAP1][YMAP0]);
 	}
 	else
-	{
-		mapx = cos(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
-		mapy = sin(angle_norm(env->angle - 90) * M_PI / 180) * env->speed;
-		if (XMAP0 > lim || XMAP1 > lim || YMAP0 > lim || YMAP1 > lim)
-			return (1);
-		if (kcode == 1)
-			return (env->map[XMAP0][YMAP1]);
-		else
-			return (env->map[XMAP1][YMAP0]);
-	}
+		return (secu_suite(env, kcode, lim));
 }
 
 void	arrowkey(int kcode, t_env *env)

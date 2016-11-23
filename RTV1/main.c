@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:01:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/22 21:31:03 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/23 04:07:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ t_env	*init_env(char *file)
 	t_env	*e;
 
 	e = (t_env*)malloc(sizeof(t_env));
-	printf("Initialazing graphics ...\n");
 	e->graph = init_graph(file);
-	printf("GRAPHIC ENVIRONNEMENT INITIALIZED.\n");
 	e->oid = 0;
-	printf("Initialazing objects ... \n");
 	init_obj(file, e);
 	return (e);
 }
@@ -47,7 +44,6 @@ int		main(int argc, char **argv)
 	if (argc == 2)
 	{
 		e = init_env(argv[1]);
-		printf("starting ray tracing\n");
 		ray_tracing(e);
 	}
 	else

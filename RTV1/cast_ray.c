@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 02:48:15 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/23 03:10:34 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/23 05:23:09 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	apply_vector(t_env *e, t_vec raydir, int x, int y)
 	while (tmp)
 	{
 		value = cast_ray(tmp, raydir, sub_vec(e->cam_pos, tmp->pos));
-		if (value < min)
+		if (value < min && value >= 0)
 		{
 			min = value;
 			result = tmp;

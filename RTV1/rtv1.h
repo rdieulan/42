@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:01:43 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/23 03:37:10 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/23 06:11:51 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@
 # include "libvec/include/lib_vec.h"
 # include <math.h>
 # include <fcntl.h>
-# include <stdio.h>
 
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 700
+# define WIN_H 500
 # define FOV 120
 # define SPEED 300
 # define SPHERE 1
@@ -59,6 +58,7 @@ typedef struct	s_env
 	float			h_angle;
 	float			v_angle;
 	int				oid;
+	int				secu;
 }				t_env;
 
 typedef struct	s_obj
@@ -82,15 +82,17 @@ void			point_color(t_env *e);
 void			init_obj(char *file, t_env *e);
 int				key_hooker(int kcode, t_env *e);
 int				red_cross(int code, t_env *e);
-void			parse_camera(t_env *e, int fd);
-void			parse_sphere(t_env *e, int fd);
-void			parse_plan(t_env *e, int fd);
-void			parse_light(t_env *e, int fd);
-void			parse_cone(t_env *e, int fd);
-void			parse_cyl(t_env *e, int fd);
-void			get_pos(t_obj *obj, char **param);
-void			get_color(t_obj *obj, char **param);
-void			get_dir(t_obj *obj, char **param);
+void			parse_camera(t_env *e, int fd, char *line);
+void			parse_sphere(t_env *e, int fd, char *line);
+void			parse_plan(t_env *e, int fd, char *line);
+void			parse_light(t_env *e, int fd, char *line);
+void			parse_cone(t_env *e, int fd, char *line, int i);
+void			parse_cyl(t_env *e, int fd, char *line, int i);
+void			get_pos(t_obj *obj, char **param, t_env *e);
+void			get_color(t_obj *obj, char **param, t_env *e);
+void			get_dir(t_obj *obj, char **param, t_env *e);
+void			get_rayon(t_obj *obj, char **param, t_env *e);
+void			get_angle(t_obj *obj, char **param, t_env *e);
 void			add_object(t_env *e, t_obj *obj);
 float			inter_cone(t_obj *obj, t_vec dist, t_vec raydir);
 float			inter_plane(t_obj *obj, t_vec dist, t_vec raydir);

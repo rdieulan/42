@@ -6,32 +6,60 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:16:38 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/23 00:59:00 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/23 05:05:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	get_pos(t_obj *obj, char **param)
+void	get_pos(t_obj *obj, char **param, t_env *e)
 {
-	obj->pos.x = ft_atoi(param[1]);
-	obj->pos.y = ft_atoi(param[2]);
-	obj->pos.z = ft_atoi(param[3]);
-	printf("POS\n");
+	if (param[1] && param[2] && param[3])
+	{
+		obj->pos.x = ft_atoi(param[1]);
+		obj->pos.y = ft_atoi(param[2]);
+		obj->pos.z = ft_atoi(param[3]);
+		e->secu++;
+	}
 }
 
-void	get_dir(t_obj *obj, char **param)
+void	get_dir(t_obj *obj, char **param, t_env *e)
 {
-	obj->dir.x = ft_atoi(param[1]);
-	obj->dir.y = ft_atoi(param[2]);
-	obj->dir.z = ft_atoi(param[3]);
-	normalize(obj->dir);
-	printf("DIR\n");
+	if (param[1] && param[2] && param[3])
+	{
+		obj->dir.x = ft_atoi(param[1]);
+		obj->dir.y = ft_atoi(param[2]);
+		obj->dir.z = ft_atoi(param[3]);
+		normalize(obj->dir);
+		e->secu++;
+	}
 }
 
-void	get_color(t_obj *obj, char **param)
+void	get_color(t_obj *obj, char **param, t_env *e)
 {
-	obj->color.r = (float)ft_atoi(param[1]);
-	obj->color.g = (float)ft_atoi(param[2]);
-	obj->color.b = (float)ft_atoi(param[3]);
+	if (param[1] && param[2] && param[3])
+	{
+		obj->color.r = (float)ft_atoi(param[1]);
+		obj->color.g = (float)ft_atoi(param[2]);
+		obj->color.b = (float)ft_atoi(param[3]);
+		e->secu++;
+	}
+}
+
+void	get_rayon(t_obj *obj, char **param, t_env *e)
+{
+	if (param[1])
+	{
+		obj->rayon = ft_atoi(param[1]);
+		e->secu++;
+	}
+}
+
+void	get_angle(t_obj *obj, char **param, t_env *e)
+{
+	if (param[1])
+	{
+		obj->angle = ft_atoi(param[1]);
+		e->secu++;
+	}
 }

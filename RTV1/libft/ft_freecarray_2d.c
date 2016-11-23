@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 14:14:13 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 17:34:10 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/23 05:20:09 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ void	ft_freecarray_2d(char **tab, int size)
 
 	i = 0;
 	while (i < size)
-		ft_strdel(&tab[i++]);
+	{
+		if (tab[i])
+			ft_strdel(&tab[i]);
+		i++;
+	}
 	ft_strdel(tab);
 }

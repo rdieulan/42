@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:45:51 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 12:23:21 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 14:52:13 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		main(int argc, char **argv)
 {
 	t_env	*env;
 
+	env = NULL;
 	if (argc == 2)
 	{
 		env = env_init(argv[1]);
@@ -71,6 +72,6 @@ int		main(int argc, char **argv)
 		graphic_init(env);
 	}
 	else
-		ft_error(1);
+		ft_error(1, env);
 	return (0);
 }

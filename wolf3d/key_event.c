@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:55:57 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 12:23:10 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:57:58 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,12 @@ void	rotate(int kcode, t_env *env)
 int		key_hooker(int kcode, t_env *env)
 {
 	if (kcode == 53)
-		exit(0);
+		ft_error(0, env);
 	else if (kcode == 0 || kcode == 1 || kcode == 2 || kcode == 13)
 		arrowkey(kcode, env);
 	else if (kcode == 12 || kcode == 14)
 		rotate(kcode, env);
-	free(env->addr);
+	ft_strdel(&env->addr);
 	env->img = mlx_new_image(env->ptr, WIN_W, WIN_H);
 	env->addr = mlx_get_data_addr(env->img, &(env->bits), &(env->len),
 			&(env->endian));

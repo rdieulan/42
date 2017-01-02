@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   ft_freeiarray_2d.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 15:18:21 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 17:24:04 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/11/21 14:47:00 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/11/21 16:19:40 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-void	ft_strdel(char **as)
+void	ft_freeiarray_2d(int **tab, int size)
 {
-	if (as != NULL)
-		ft_memdel((void**)as);
+	int	i;
+
+	i = 0;
+	while (i < size)
+		free(tab[i++]);
+	free(tab);
+	tab = NULL;
 }

@@ -6,13 +6,13 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 11:13:26 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 12:23:00 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 14:50:36 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-void	check_info_integrity(char **info)
+void	check_info_integrity(char **info, t_env *env)
 {
 	int	i;
 	int	j;
@@ -26,12 +26,12 @@ void	check_info_integrity(char **info)
 			while (info[j][i])
 			{
 				if (ft_isdigit((int)info[j][i]) == 0)
-					ft_error(4);
+					ft_error(4, env);
 				i++;
 			}
 		}
 		else
-			ft_error(4);
+			ft_error(4, env);
 		j++;
 	}
 }
@@ -48,9 +48,9 @@ void	check_line_integrity(char **line, t_env *env)
 		i++;
 	}
 	if (env->error == 1)
-		ft_error(2);
+		ft_error(2, env);
 	if (i != (env->map_memory - 2))
-		ft_error(3);
+		ft_error(3, env);
 }
 
 void	check_player_start(t_env *env)
@@ -65,11 +65,11 @@ void	check_player_start(t_env *env)
 		if (y >= 0 && y < env->map_memory)
 		{
 			if (env->map[x][y] == 1)
-				ft_error(7);
+				ft_error(7, env);
 		}
 		else
-			ft_error(8);
+			ft_error(8, env);
 	}
 	else
-		ft_error(8);
+		ft_error(8, env);
 }

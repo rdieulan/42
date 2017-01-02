@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/05 15:48:10 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 11:46:18 by rdieulan         ###   ########.fr       */
+/*   Updated: 2017/01/02 14:46:44 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,18 @@
 # define WOLF_H
 
 # include "minilibx_macos/mlx.h"
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdlib.h>
 # include <math.h>
 # include "libft/includes/libft.h"
 
-# define WIN_W 1080
-# define WIN_H 720
+# define WIN_W 1920
+# define WIN_H 1080
 # define B_UNIT 64
 # define INIT_ANGLE 90
-# define INIT_SPEED 10
+# define INIT_SPEED 20
 # define ROTATE_SPEED 10
 # define FOV 60
-# define PROJ_W 320
-# define PROJ_H 200
 # define XMAP0 (int)((env->posx - mapx) / B_UNIT)
 # define XMAP1 (int)((env->posx + mapx) / B_UNIT)
 # define YMAP0 (int)((env->posy - mapy) / B_UNIT)
@@ -86,9 +83,9 @@ void			set_color_wall_west(t_env *env, double dist);
 void			set_color_wall_east(t_env *env, double dist);
 double			angle_norm(double angle);
 void			load_map(char *map, t_env *env);
-void			check_info_integrity(char **info);
+void			check_info_integrity(char **info, t_env *env);
 void			check_line_integrity(char **line, t_env *env);
 void			check_player_start(t_env *env);
-void			ft_error(int error);
+void			ft_error(int error, t_env *env);
 int				motion_notify(int x, int y, t_env *env);
 #endif

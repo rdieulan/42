@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/11/21 12:23:33 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 14:55:33 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	red_cross(int code, t_env *env)
 {
 	(void)code;
 	(void)env;
-	exit(0);
+	ft_error(0, env);
 	return (0);
 }

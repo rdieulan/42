@@ -6,7 +6,7 @@
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 15:19:41 by rdieulan          #+#    #+#             */
-/*   Updated: 2016/03/02 16:12:22 by rdieulan         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:55:12 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit2(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strrev(char *s);
 void				ft_putendl(char const *s);
@@ -88,4 +89,6 @@ char				**ft_newc2d(size_t i, size_t j, char c);
 int					ft_isprime(int nb);
 char				*ft_concat(char *s1, char *s2);
 int					get_next_line(int fd, char **line);
+void				ft_freecarray_2d(char **tab, int size);
+void				ft_freeiarray_2d(int **tab, int size);
 #endif

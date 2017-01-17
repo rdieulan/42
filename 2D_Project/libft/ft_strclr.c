@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/04 15:20:45 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:16:49 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	ft_strclr(char *s)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	if (s)
+	{
+		while (*s != '\0')
+		{
+			*s = '\0';
+			s++;
+		}
+	}
 }

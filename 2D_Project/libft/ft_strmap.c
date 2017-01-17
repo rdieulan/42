@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/04 16:19:00 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:19:08 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	char			*new;
+	unsigned int	i;
+
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	new = ft_strnew(ft_strlen(s));
+	if (!new)
+		return (NULL);
+	if (s && f)
+	{
+		while (s[i])
+		{
+			new[i] = f((char)s[i]);
+			i++;
+		}
+	}
+	if (new)
+		return (new);
+	else
+		return (NULL);
 }

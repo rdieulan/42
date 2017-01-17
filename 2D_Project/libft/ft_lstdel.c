@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/07 17:57:59 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:11:38 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	if ((*alst)->next)
+		ft_lstdel(&(*alst)->next, del);
+	ft_lstdelone(alst, del);
 }

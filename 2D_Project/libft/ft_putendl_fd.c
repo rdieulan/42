@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/06 18:01:21 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:15:18 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	if (s && fd)
+	{
+		ft_putstr_fd(s, fd);
+		ft_putchar_fd('\n', fd);
+	}
 }

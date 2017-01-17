@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/04 15:11:52 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:20:19 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char	*ft_strnew(size_t size)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	char	*str;
+
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (str)
+	{
+		ft_memset(str, '\0', size + 1);
+		return (str);
+	}
+	return (NULL);
 }

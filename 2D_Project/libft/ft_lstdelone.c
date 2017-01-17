@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/07 17:50:06 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/03/02 14:49:21 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	ft_lstdelone(t_list **alst, void *content)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	t_list	*temp;
+	t_list	*previous;
+
+	temp = *alst;
+	previous = NULL;
+	while (temp)
+	{
+		if (temp->content == content)
+		{
+			if (previous == NULL)
+				*alst = temp->next;
+			else
+				previous->next = temp->next;
+			free(temp->content);
+			free(temp);
+			temp = NULL;
+			return ;
+		}
+		previous = temp;
+		temp = temp->next;
+	}
 }

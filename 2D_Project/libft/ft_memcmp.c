@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/03 15:37:44 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:13:23 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void)code;
-	(void)env;
-	exit(0);
+	const unsigned char *cp1 = s1;
+	const unsigned char *cp2 = s2;
+
+	while (n--)
+	{
+		if (*cp1 != *cp2)
+			return (*cp1 - *cp2);
+		else
+		{
+			cp1++;
+			cp2++;
+		}
+	}
 	return (0);
 }

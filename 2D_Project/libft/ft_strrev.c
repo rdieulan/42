@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/06 16:39:51 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:20:53 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char		*ft_strrev(char *s)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	int		i;
+	int		len;
+	char	tmp;
+
+	i = 0;
+	len = 0;
+	tmp = 0;
+	if (s)
+	{
+		len = ft_strlen(s);
+		while (i < len / 2)
+		{
+			tmp = s[i];
+			s[i] = s[len - i - 1];
+			s[len - i - 1] = tmp;
+			i++;
+		}
+	}
+	return (s);
 }

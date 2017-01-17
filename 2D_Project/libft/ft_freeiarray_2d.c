@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_freeiarray_2d.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2016/11/21 14:47:00 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/11/21 16:19:40 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	ft_freeiarray_2d(int **tab, int size)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (i < size)
+		free(tab[i++]);
+	free(tab);
+	tab = NULL;
 }

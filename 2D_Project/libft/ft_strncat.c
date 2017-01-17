@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/03 17:14:17 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:19:29 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	size_t i;
+	size_t j;
+
+	i = 0;
+	j = ft_strlen(s1);
+	if (n == 0)
+		return (s1);
+	while (s2[i] != '\0' && i < n)
+	{
+		s1[ft_strlen(s1)] = s2[i];
+		i++;
+	}
+	s1[i + j] = '\0';
+	return (s1);
 }

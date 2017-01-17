@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/03 16:09:32 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:17:16 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	size_t i;
+
+	i = 0;
+	while (i < (ft_strlen(src) + 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dst);
 }

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_newc2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/09 16:08:42 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:14:21 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+char	**ft_newc2d(size_t i, size_t j, char c)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	size_t	k;
+	char	**tab;
+
+	k = 0;
+	tab = (char **)malloc(sizeof(char *) * (i + 1));
+	while (k < j)
+	{
+		tab[k] = (char *)malloc(sizeof(char) * j);
+		ft_memset(tab[k], c, j);
+		k++;
+	}
+	tab[k] = (char *)malloc(sizeof(char) * 1);
+	tab[i][0] = '\0';
+	return (tab);
 }

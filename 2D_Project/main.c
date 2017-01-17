@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2017/01/02 15:30:53 by rdieulan          #+#    #+#             */
+/*   Updated: 2017/01/02 15:33:37 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include <stdio.h>
+#include <SDL.h>
 
-int	red_cross(int code, t_env *env)
+int	main(int argc, char **argv)
 {
-	(void)code;
-	(void)env;
-	exit(0);
+	argc = 0;
+	argv = NULL;
+	printf("Hello world!\n");
 	return (0);
 }

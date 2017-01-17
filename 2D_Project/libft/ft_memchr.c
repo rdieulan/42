@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   red_cross.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rdieulan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/21 10:44:50 by rdieulan          #+#    #+#             */
-/*   Updated: 2017/01/17 16:24:58 by rdieulan         ###   ########.fr       */
+/*   Created: 2015/12/03 15:31:18 by rdieulan          #+#    #+#             */
+/*   Updated: 2016/02/15 16:13:12 by rdieulan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "includes/libft.h"
 
-int	red_cross(int code, t_env *env)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	(void)code;
-	(void)env;
-	exit(0);
-	return (0);
+	unsigned char *s2;
+
+	s2 = (unsigned char*)s;
+	while (n--)
+	{
+		if (*s2 != (unsigned char)c)
+			s2++;
+		else
+			return (s2);
+	}
+	return (NULL);
 }
